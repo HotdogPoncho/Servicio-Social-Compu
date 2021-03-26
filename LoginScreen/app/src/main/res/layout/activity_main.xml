@@ -16,7 +16,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/formicon" />
+        app:srcCompat="@drawable/formicon"
+        android:contentDescription="TODO" />
 
     <EditText
         android:id="@+id/txtNumTrab"
@@ -24,23 +25,23 @@
         android:layout_height="42dp"
         android:layout_marginTop="116dp"
         android:ems="10"
-        android:hint="Número de Trabajador"
+        android:hint="@string/txtNumTrab"
         android:inputType="textPersonName"
-        android:text=""
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/cmdIniciarSesion"
         android:layout_width="219dp"
         android:layout_height="48dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="92dp"
         android:background="@drawable/button_rounded"
-        android:text="Iniciar Sesion"
+        android:text="@string/cmdIniciarSesion"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,15 +51,15 @@
         android:id="@+id/cmdRegistrarse"
         android:layout_width="219dp"
         android:layout_height="48dp"
-        android:layout_marginTop="68dp"
         android:background="@drawable/button_rounded_border"
-        android:text="Registrarse"
+        android:onClick="formRegistro"
+        android:text="@string/cmdRegistrarse"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cmdIniciarSesion"
-        app:layout_constraintVertical_bias="0.096" />
+        app:layout_constraintVertical_bias="0.113" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

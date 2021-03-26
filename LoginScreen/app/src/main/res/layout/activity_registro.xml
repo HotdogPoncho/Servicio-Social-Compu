@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/appform" />
+        app:srcCompat="@drawable/appform"/>
 
     <EditText
         android:id="@+id/txtNumTrab"
@@ -58,15 +58,14 @@
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtApellidos" />
+        app:layout_constraintTop_toBottomOf="@+id/txtApellidos"
+        android:autofillHints="" />
 
     <Spinner
         android:id="@+id/lstArea"
         android:layout_width="270dp"
         android:layout_height="42dp"
         android:layout_marginTop="32dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
@@ -76,8 +75,6 @@
         android:layout_width="270dp"
         android:layout_height="42dp"
         android:layout_marginTop="32dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"

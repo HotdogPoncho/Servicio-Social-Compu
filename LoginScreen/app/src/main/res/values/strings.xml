@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">LoginScreen</string>
+    <string name="txtNumTrab">Número de Trabajador</string>
+    <string name="cmdIniciarSesion">Iniciar Sesión</string>
+    <string name="cmdRegistrarse">Registrarse</string>
+    
+
+
+
+
 </resources>
