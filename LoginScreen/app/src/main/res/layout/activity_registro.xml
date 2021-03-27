@@ -25,7 +25,7 @@
         android:layout_marginTop="56dp"
         android:ems="10"
         android:hint="Número de Trabajador"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:singleLine="true"

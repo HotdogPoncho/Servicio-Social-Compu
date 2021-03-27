@@ -8,6 +8,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonArrayRequest;
+
+import org.json.JSONArray;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText txtNumTrab;
@@ -30,5 +35,14 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Inicio Registrado", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void buscarProfesor(String URL){
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+            }
+        })
     }
 }
