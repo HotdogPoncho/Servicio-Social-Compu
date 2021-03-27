@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +20,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void formRegistro(View view){
-        Intent registro = new Intent(MainActivity.this, Registro.class);
-        MainActivity.this.startActivity(registro);
+        Intent registro = new Intent( this, Registro.class);
+        startActivity(registro);
+    }
+
+    public void IniciarSesion(View view){
+        if(txtNumTrab.length() == 0){
+            Toast.makeText(this, "Ingresa tu Número de Trabajador", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Inicio Registrado", Toast.LENGTH_SHORT).show();
+        }
     }
 }

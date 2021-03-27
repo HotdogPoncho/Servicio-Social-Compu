@@ -2,14 +2,18 @@ package com.example.loginscreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Registro extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+
+    EditText txtNumTrab, txtApellidos, txtNombre;
 
     Spinner lstColegio;
 
@@ -27,6 +31,10 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+
+        txtNumTrab = (EditText) findViewById(R.id.txtNumTrab);
+        txtApellidos = (EditText) findViewById(R.id.txtApellidos);
+        txtNombre = (EditText) findViewById(R.id.txtNombre);
 
         Spinner lstArea = findViewById(R.id.lstArea);
 
@@ -61,5 +69,26 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
         ArrayAdapter<String> lstColegios = new ArrayAdapter<String>(this, R.layout.spinner_item_textcolor, area);
         lstColegios.setDropDownViewResource(R.layout.spinner_item_dropcolor);
         lstColegio.setAdapter(lstColegios);
+    }
+
+    public void GuardarDatos(View view){
+        if(txtNumTrab.length() == 0){
+            Toast.makeText(this, "Ingresa tu numero de trabajador", Toast.LENGTH_SHORT).show();
+        }else if(txtApellidos.length() == 0){
+            Toast.makeText(this, "Debes ingresar tus Apellidos", Toast.LENGTH_SHORT).show();
+        }else if(txtNombre.length() == 0){
+            Toast.makeText(this, "Debes ingresar tu nombre", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Registro aprobado, intente iniciando sesión", Toast.LENGTH_SHORT).show();
+            Intent Inicio = new Intent(this, MainActivity.class);
+            startActivity(Inicio);
+        }
+
+    }
+
+    public void BorrarDatos(View view){
+        txtNumTrab.setText("");
+        txtApellidos.setText("");
+        txtNombre.setText("");
     }
 }
