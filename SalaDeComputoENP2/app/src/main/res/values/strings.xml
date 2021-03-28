@@ -1,11 +1,8 @@
 <resources>
-    <string name="app_name">LoginScreen</string>
+    <string name="app_name">Sala De Computo ENP2</string>
     <string name="txtNumTrab">Número de Trabajador</string>
     <string name="cmdIniciarSesion">Iniciar Sesión</string>
     <string name="cmdRegistrarse">Registrarse</string>
-    
-
-
 
 
 </resources>

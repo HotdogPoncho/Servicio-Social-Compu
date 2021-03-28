@@ -63,5 +63,63 @@
         app:layout_constraintTop_toBottomOf="@+id/cmdIniciarSesion"
         app:layout_constraintVertical_bias="0.113" />
 
+    <TextView
+        android:id="@+id/lblApellidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text=""
+        android:visibility="invisible"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.403"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cmdRegistrarse"
+        app:layout_constraintVertical_bias="0.496" />
+
+    <TextView
+        android:id="@+id/lblNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:enabled="false"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblApellidos"
+        app:layout_constraintTop_toBottomOf="@+id/cmdRegistrarse"
+        app:layout_constraintVertical_bias="0.496" />
+
+    <TextView
+        android:id="@+id/lblFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text=""
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.267"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cmdRegistrarse"
+        app:layout_constraintVertical_bias="0.496" />
+
+    <TextView
+        android:id="@+id/lblHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text=""
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toEndOf="@+id/lblApellidos"
+        app:layout_constraintTop_toBottomOf="@+id/cmdRegistrarse"
+        app:layout_constraintVertical_bias="0.496" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
