@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RegistroExitoso"></activity>
+        <activity android:name=".Busqueda"></activity>
+        <activity android:name=".RegistroExitoso" />
         <activity android:name=".Registro" />
         <activity android:name=".MainActivity">
             <intent-filter>

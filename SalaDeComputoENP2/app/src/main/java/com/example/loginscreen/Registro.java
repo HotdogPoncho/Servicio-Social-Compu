@@ -90,7 +90,7 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
         }else if(txtNombre.length() == 0){
             Toast.makeText(this, "Ingresa tu nombre", Toast.LENGTH_SHORT).show();
         }else{
-            ejecutarServicio("http://192.168.50.179/SalaDeComputo/registrarProfesor.php");
+            ejecutarServicio("https://saladecomputoenp2.000webhostapp.com/registrarProfesor.php");
             Intent Inicio = new Intent(this, MainActivity.class);
             startActivity(Inicio);
         }
