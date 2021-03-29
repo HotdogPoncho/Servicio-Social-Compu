@@ -7,119 +7,107 @@
     android:background="#202732"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/formicon"
-        android:contentDescription="TODO" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="79dp"
+        tools:layout_editor_absoluteY="-16dp">
 
-    <EditText
-        android:id="@+id/txtNumTrab"
-        android:layout_width="318dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="116dp"
-        android:ems="10"
-        android:hint="@string/txtNumTrab"
-        android:inputType="number"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:singleLine="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        android:importantForAutofill="no" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/cmdIniciarSesion"
-        android:layout_width="219dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="92dp"
-        android:background="@drawable/button_rounded"
-        android:onClick="IniciarSesion"
-        android:text="@string/cmdIniciarSesion"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNumTrab" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="142dp"
+                android:layout_marginTop="60dp"
+                android:contentDescription="TODO"
+                app:srcCompat="@drawable/formicon" />
 
-    <Button
-        android:id="@+id/cmdRegistrarse"
-        android:layout_width="219dp"
-        android:layout_height="48dp"
-        android:background="@drawable/button_rounded_border"
-        android:onClick="formRegistro"
-        android:text="@string/cmdRegistrarse"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cmdIniciarSesion"
-        app:layout_constraintVertical_bias="0.113" />
+            <EditText
+                android:id="@+id/txtNumTrab"
+                android:layout_width="318dp"
+                android:layout_height="42dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="116dp"
+                android:ems="10"
+                android:hint="@string/txtNumTrab"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF" />
+
+            <Button
+                android:id="@+id/cmdIniciarSesion"
+                android:layout_width="219dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="88dp"
+                android:layout_marginTop="92dp"
+                android:background="@drawable/button_rounded"
+                android:onClick="IniciarSesion"
+                android:text="@string/cmdIniciarSesion"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/cmdRegistrarse"
+                android:layout_width="219dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="88dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/button_rounded_border"
+                android:onClick="formRegistro"
+                android:text="@string/cmdRegistrarse"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/lblApellidos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:enabled="false"
+        android:layout_marginLeft="92dp"
         android:text=""
-        android:visibility="invisible"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.403"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cmdRegistrarse"
-        app:layout_constraintVertical_bias="0.496" />
+        android:visibility="invisible"
+        tools:layout_editor_absoluteY="661dp" />
 
     <TextView
         android:id="@+id/lblNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
+        android:layout_marginLeft="92dp"
         android:enabled="false"
         android:text=""
         android:textColor="#FFFFFF"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lblApellidos"
-        app:layout_constraintTop_toBottomOf="@+id/cmdRegistrarse"
-        app:layout_constraintVertical_bias="0.496" />
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="554dp" />
 
     <TextView
         android:id="@+id/lblFecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="92dp"
         android:enabled="false"
         android:text=""
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.267"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cmdRegistrarse"
-        app:layout_constraintVertical_bias="0.496" />
+        tools:layout_editor_absoluteY="630dp" />
 
     <TextView
         android:id="@+id/lblHora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="92dp"
         android:enabled="false"
         android:text=""
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
-        app:layout_constraintStart_toEndOf="@+id/lblApellidos"
-        app:layout_constraintTop_toBottomOf="@+id/cmdRegistrarse"
-        app:layout_constraintVertical_bias="0.496" />
+        tools:layout_editor_absoluteY="626dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
