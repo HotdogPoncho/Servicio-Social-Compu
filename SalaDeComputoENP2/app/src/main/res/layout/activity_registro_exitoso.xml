@@ -7,47 +7,48 @@
     android:background="#202732"
     tools:context=".RegistroExitoso">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="269dp"
-        android:layout_height="126dp"
-        android:text="REGISTRO EXITOSO"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.456" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="353dp"
-        android:layout_height="80dp"
-        android:text="PUEDE CERRAR LA APLICACION"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/cmdSalir"
-        android:layout_width="271dp"
-        android:layout_height="48dp"
-        android:background="@drawable/button_rounded"
-        android:onClick="cerrar"
-        android:text="Salir"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.643" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="269dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="250dp"
+                android:layout_marginLeft="65dp"
+                android:text="REGISTRO EXITOSO"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="353dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="30dp"
+                android:text="PUEDE CERRAR LA APLICACION"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/cmdSalir"
+                android:layout_width="271dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="70dp"
+                android:background="@drawable/button_rounded"
+                android:onClick="cerrar"
+                android:text="Salir"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

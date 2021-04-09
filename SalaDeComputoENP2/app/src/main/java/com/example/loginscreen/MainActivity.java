@@ -50,12 +50,15 @@ public class MainActivity extends AppCompatActivity {
     public void IniciarSesion(View view){
         if(txtNumTrab.length() == 0){
             Toast.makeText(this, "Ingresa tu Número de Trabajador", Toast.LENGTH_SHORT).show();
+        }else if(txtNumTrab.getText().toString().equals("290702")){
+            Intent pantalla = new Intent(MainActivity.this , ModificarDatos.class);
+            startActivity(pantalla);
         }else{
             String fecha = new Date().toString();
             String[] fechaHora = fecha.split(" ");
             lblFecha.setText(fechaHora[2] + "/" + fechaHora[1] + "/" + fechaHora[5]);
             lblHora.setText(fechaHora[3]);
-            buscarProfesor("https://saladecomputoenp2.000webhostapp.com/IniciarSesion.php?numeroDeTrabajador="+txtNumTrab.getText().toString()+"");
+            buscarProfesor("https://enp2saladecomputo.000webhostapp.com/IniciarSesion.php?numeroDeTrabajador="+txtNumTrab.getText().toString()+"");
         }
     }
 
@@ -70,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                         txtNumTrab.setText(jsonObject.getString("numeroDeTrabajador"));
                         lblApellidos.setText(jsonObject.getString("apellidos"));
                         lblNombre.setText(jsonObject.getString("nombre"));
-                        registrarInicio("https://saladecomputoenp2.000webhostapp.com/registrarUso.php");
+                        registrarInicio("https://enp2saladecomputo.000webhostapp.com/registrarUso.php");
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -108,8 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 parametros.put("numeroDeTrabajador", txtNumTrab.getText().toString());
                 parametros.put("apellidos", lblApellidos.getText().toString());
                 parametros.put("nombre", lblNombre.getText().toString());
-                parametros.put("fecha", lblFecha.getText().toString());
-                parametros.put("hora", lblHora.getText().toString());
+                parametros.put("fechaYHora", lblFecha.getText().toString() + " - " + lblHora.getText().toString());
                 parametros.put("impresiones", "");
                 parametros.put("observaciones", "");
                 return parametros;

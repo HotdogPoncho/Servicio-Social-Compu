@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#202732"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="309dp"
+                android:layout_height="118dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="28dp"
+                tools:ignore="MissingConstraints">
+
+                <RadioButton
+                    android:id="@+id/optNumero"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:text="@string/numero_de_trabajador"
+                    android:textColor="#FFFFFF" />
+
+                <RadioButton
+                    android:id="@+id/optNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:text="@string/nombre"
+                    android:textColor="#FFFFFF" />
+
+                <RadioButton
+                    android:id="@+id/optApellidos"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:checked="true"
+                    android:text="@string/apellidos"
+                    android:textColor="#FFFFFF" />
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/txtBuscar"
+                android:layout_width="250dp"
+                android:layout_height="41dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:autofillHints=""
+                android:layout_marginStart="40dp"
+                tools:ignore="LabelFor" />
+
+            <Button
+                android:id="@+id/cmdBuscar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="255dp"
+                android:layout_marginLeft="255dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_rounded"
+                android:onClick="buscar"
+                android:text="@string/buscar" />
+
+            <ListView
+                android:id="@+id/lstvwProfesores"
+                android:layout_width="314dp"
+                android:layout_height="380dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="50dp"
+                android:background="#FAFAFA"
+                android:cacheColorHint="#FFFFFF"
+                android:longClickable="false"
+                android:layout_marginStart="45dp"
+                tools:ignore="NestedScrolling" />
+
+            <Button
+                android:id="@+id/cmdModificar"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_rounded"
+                android:onClick="modificar"
+                android:text="@string/modificar" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
