@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         if(txtNumTrab.length() == 0){
             Toast.makeText(this, "Ingresa tu Número de Trabajador", Toast.LENGTH_SHORT).show();
         }else if(txtNumTrab.getText().toString().equals("290702")){
-            Intent pantalla = new Intent(MainActivity.this , ModificarDatos.class);
+            Intent pantalla = new Intent(MainActivity.this , BuscarProfesor.class);
             startActivity(pantalla);
         }else{
             String fecha = new Date().toString();

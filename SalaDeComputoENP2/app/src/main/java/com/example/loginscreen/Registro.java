@@ -19,10 +19,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Registro extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+
+    String area, colegio;
 
     EditText txtNumTrab, txtApellidos, txtNombre;
 
@@ -38,6 +41,16 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
 
     String[] Area4 = {"Alemán", "Artes Plásticas", "Danza", "Dibujo y Modelado", "Filosofía", "Francés", "Inglés", "Italiano", "Letras Clásicas", "Literatura", "Música", "Teatro"};
 
+    int[] itemAreas = {R.drawable.ic_math, R.drawable.ic_area2, R.drawable.ic_ciencias_sociales, R.drawable.ic_area4};
+
+    int[] itemArea1 = {R.drawable.ic_fisica, R.drawable.ic_informatica, R.drawable.ic_matematicas};
+
+    int[] itemArea2 = {R.drawable.ic_bacterias, R.drawable.ic_deporte, R.drawable.ic_fisiologia, R.drawable.ic_exito, R.drawable.ic_psicologia, R.drawable.ic_quimica};
+
+    int[] itemArea3 = {R.drawable.ic_ciencias_sociales, R.drawable.ic_geografia, R.drawable.ic_libro};
+
+    int[] itemArea4 = {R.drawable.ic_aleman, R.drawable.ic_escultura, R.drawable.ic_danza, R.drawable.ic_bosquejo, R.drawable.ic_filosofia, R.drawable.ic_frances, R.drawable.ic_english, R.drawable.ic_italiano, R.drawable.ic_letras, R.drawable.ic_literatura, R.drawable.ic_musica, R.drawable.ic_teatro};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,24 +62,32 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
 
         lstArea = findViewById(R.id.lstArea);
 
-        ArrayAdapter<String> lstAreas = new ArrayAdapter<>(this, R.layout.spinner_item_textcolor, Areas);
-        lstAreas.setDropDownViewResource(R.layout.spinner_item_dropcolor);
-        lstArea.setAdapter(lstAreas);
+        ArrayList<CustomItems> customList = new ArrayList<>();
+
+       for(int i = 0; i < Areas.length; i++){
+           customList.add(new CustomItems(Areas[i], itemAreas[i]));
+       }
+
+        CustomAdapter customAdapter = new CustomAdapter(this, customList);
+
+        lstArea.setAdapter(customAdapter);
         lstArea.setOnItemSelectedListener(this);
+
 
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-        String seleccion = adapterView.getSelectedItem().toString();
-        if(seleccion.equals("Área I: Ciencias Físico - Matemáticas")){
-            spinnerOpciones(Area1);
-        }else if(seleccion.equals("Área II: Biológicas y de la Salud")){
-            spinnerOpciones(Area2);
-        }else if(seleccion.equals("Área III: Ciencias Sociales")){
-            spinnerOpciones(Area3);
+        CustomItems items = (CustomItems)adapterView.getSelectedItem();
+        area = items.getSpinnerText();
+        if(area.equals("Área I: Ciencias Físico - Matemáticas")){
+            spinnerOpciones(Area1, itemArea1);
+        }else if(area.equals("Área II: Biológicas y de la Salud")){
+            spinnerOpciones(Area2, itemArea2);
+        }else if(area.equals("Área III: Ciencias Sociales")){
+            spinnerOpciones(Area3, itemArea3);
         }else{
-            spinnerOpciones(Area4);
+            spinnerOpciones(Area4, itemArea4);
         }
     }
 
@@ -75,11 +96,27 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
 
     }
 
-    public void spinnerOpciones(String[] area){
-        lstColegio = (Spinner)findViewById(R.id.lstColegio);
-        ArrayAdapter<String> lstColegios = new ArrayAdapter<String>(this, R.layout.spinner_item_textcolor, area);
-        lstColegios.setDropDownViewResource(R.layout.spinner_item_dropcolor);
-        lstColegio.setAdapter(lstColegios);
+    public void spinnerOpciones(String[] area, int[] items){
+        lstColegio = findViewById(R.id.lstColegio);
+
+        ArrayList<CustomItems> customItemsArrayList = new ArrayList<>();
+        for(int i = 0; i < area.length; i++){
+            customItemsArrayList.add(new CustomItems(area[i], items[i]));
+        }
+        CustomAdapter customAdapter = new CustomAdapter(this, customItemsArrayList);
+        lstColegio.setAdapter(customAdapter);
+        lstColegio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                CustomItems itemsColegio = (CustomItems)adapterView.getSelectedItem();
+                colegio = itemsColegio.getSpinnerText();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public void GuardarDatos(View view){
@@ -121,8 +158,8 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
                 parametros.put("numeroDeTrabajador", txtNumTrab.getText().toString());
                 parametros.put("apellidos", txtApellidos.getText().toString());
                 parametros.put("nombre", txtNombre.getText().toString());
-                parametros.put("area", lstArea.getSelectedItem().toString());
-                parametros.put("colegio", lstColegio.getSelectedItem().toString());
+                parametros.put("area", area);
+                parametros.put("colegio", colegio);
                 return parametros;
             }
         };

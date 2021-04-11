@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -25,78 +24,75 @@ import org.json.JSONObject;
 
 public class BuscarProfesor extends AppCompatActivity {
 
-    String[] datos = new String[7];
-
-    String[] profesores = new String[0];
-
-    String indice,numeroDeTrabajador,apellidos,nombre,fechaYHora,impresiones,observaciones;
-
-    ListView lstvwProfesores;
-
     RadioButton optNumero, optNombre, optApellidos;
 
     EditText txtBuscar;
 
-    Spinner sp;
+    ListView lstVisitas;
+
+    String[] visitas = new String[0];
+
+    String fechaYHora;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_profesor);
 
-        optNumero = (RadioButton)findViewById(R.id.optNumero);
-        optNombre = (RadioButton)findViewById(R.id.optNombre);
-        optApellidos = (RadioButton)findViewById(R.id.optApellidos);
+        optNumero = findViewById(R.id.optNumero);
+        optNombre = findViewById(R.id.optNombre);
+        optApellidos = findViewById(R.id.optApellidos);
 
-        txtBuscar = (EditText)findViewById(R.id.txtBuscar);
+        txtBuscar = findViewById(R.id.txtBuscar);
 
-        sp = (Spinner)findViewById(R.id.spinner);
+        lstVisitas = findViewById(R.id.lstvwProfesores);
 
-
-        lstvwProfesores = (ListView)findViewById(R.id.lstvwProfesores);
-        lstvwProfesores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lstVisitas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                buscarDatos("https://enp2saladecomputo.000webhostapp.com/BuscarDatos.php?índice="+indice);
+                fechaYHora = visitas[position];
             }
         });
 
     }
 
-    public void verVisitas(View view){
-        if (txtBuscar.length() > 0) {
-            if (optNumero.isChecked() == true) {
-                buscarProfesor("https://enp2saladecomputo.000webhostapp.com/BusquedaNumero.php?numeroDeTrabajador=" + txtBuscar.getText().toString() + "");
-                visitas();
-            } else if (optNombre.isChecked() == true) {
-                buscarProfesor("https://enp2saladecomputo.000webhostapp.com/BusquedaNombre.php?nombre=" + txtBuscar.getText().toString() + "");
-                visitas();
+    public void modificar(View view){
+        Intent modificarDatos = new Intent(BuscarProfesor.this, ModificarDatos.class);
+        modificarDatos.putExtra("fechaYHora", fechaYHora);
+        startActivity(modificarDatos);
+    }
+
+    public void buscar(View view){
+        if(txtBuscar.length() > 0) {
+            if (optNumero.isChecked()) {
+                opcionBusqueda(1);
+            } else if (optNombre.isChecked()) {
+                opcionBusqueda(2);
             } else {
-                buscarProfesor("https://enp2saladecomputo.000webhostapp.com/BusquedaApellido.php?apellidos=" + txtBuscar.getText().toString() + "");
-                visitas();
+                opcionBusqueda(3);
             }
-        } else {
-            Toast.makeText(getApplicationContext(), "Ingresa algo para buscar", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Ingrese algo para buscar", Toast.LENGTH_SHORT).show();
         }
     }
 
-
-    public void buscarProfesor(String URL){
+    public void buscarProfe(String URL, int opcion){
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                JSONObject jsonObject = null;
-                profesores = new String[response.length()];
+                JSONObject jsonObject;
+                visitas = new String[response.length()];
                 for(int i = 0; i < response.length(); i++){
-                    try {
+                    try{
                         jsonObject = response.getJSONObject(i);
-                        numeroDeTrabajador = jsonObject.getString("numeroDeTrabajador");
                         fechaYHora = jsonObject.getString("fechaYHora");
-                        profesores[i] = fechaYHora;
+                        visitas[i] = fechaYHora;
                     }catch(JSONException e){
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
+                opcionBusqueda(opcion);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -109,49 +105,29 @@ public class BuscarProfesor extends AppCompatActivity {
     }
 
     public void visitas(){
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, profesores);
-        lstvwProfesores.setAdapter(arrayAdapter);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, visitas);
+        lstVisitas.setAdapter(arrayAdapter);
     }
 
+    public void opcionBusqueda(int opcion){
+        switch(opcion){
+            case 1:
+                buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaNumero.php?numeroDeTrabajador=" + txtBuscar.getText().toString() + "", 1);
+                break;
 
-    public void buscarDatos(String URL){
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                JSONObject jsonObject = null;
-                for(int i = 0; i < response.length(); i++){
-                    try {
-                        jsonObject = response.getJSONObject(i);
-                        apellidos = jsonObject.getString("apellidos");
-                        nombre = jsonObject.getString("nombre");
-                        impresiones = jsonObject.getString("impresiones");
-                        observaciones = jsonObject.getString("observaciones");
-                        indice = jsonObject.getString("índice");
-                    }catch(JSONException e){
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
-    }
+            case 2:
+                buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaNombre.php?nombre=" + txtBuscar.getText().toString() + "", 2);
+                break;
 
-    public void mandarDatos(View view){
-        Toast.makeText(getApplicationContext(), "Se mandaron con exito", Toast.LENGTH_SHORT).show();
-        Intent modificar = new Intent(BuscarProfesor.this, ModificarDatos.class);
-        modificar.putExtra("numeroDeTrabajador", numeroDeTrabajador + "" );
-        modificar.putExtra("apellidos",  apellidos + "");
-        modificar.putExtra("nombre", nombre + "");
-        modificar.putExtra("fechaYHora", fechaYHora + "");
-        modificar.putExtra("impresiones", impresiones + "");
-        modificar.putExtra("observaciones", observaciones + "");
-        startActivity(modificar);
+            case 3:
+                buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaApellido.php?apellidos=" + txtBuscar.getText().toString() + "", 3);
+                break;
+
+            default:
+                Toast.makeText(this, "No se encontró ninguna opción", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        visitas();
     }
 
 }

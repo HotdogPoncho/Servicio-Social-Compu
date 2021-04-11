@@ -3,6 +3,11 @@
     <string name="txtNumTrab">Número de Trabajador</string>
     <string name="cmdIniciarSesion">Iniciar Sesión</string>
     <string name="cmdRegistrarse">Registrarse</string>
+    <string name="modificar">Modificar</string>
+    <string name="buscar">Buscar</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="nombre">Nombre</string>
+    <string name="numero_de_trabajador">Número De Trabajador</string>
 
 
 </resources>

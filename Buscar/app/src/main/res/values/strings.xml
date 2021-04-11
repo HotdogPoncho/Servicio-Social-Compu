@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">Buscar</string>
-    <string name="modificar">Modificar</string>
-    <string name="buscar">Buscar</string>
-    <string name="apellidos">Apellidos</string>
-    <string name="numero_de_trabajador">Numero De Trabajador</string>
-    <string name="nombre">Nombre</string>
-</resources>
