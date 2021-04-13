@@ -40,6 +40,7 @@ public class ModificarDatos extends AppCompatActivity {
         txtfechaYHora = findViewById(R.id.txtfechaYHora);
         txtImpresiones = findViewById(R.id.txtImpresiones);
         txtObservaciones = findViewById(R.id.txtObservaciones);
+
         fechaYHora = getIntent().getStringExtra("fechaYHora");
 
         buscarVisita("https://enp2saladecomputo.000webhostapp.com/BuscarDatos.php?fechaYHora=" + fechaYHora + "");
@@ -50,28 +51,24 @@ public class ModificarDatos extends AppCompatActivity {
     }
 
     public void actualizar(View view){
-        actualizarDatos("https://enp2saladecomputo.000webhostapp.com/Actualizar?fechaYHora=" + fechaYHora + "");
+        actualizarDatos("https://enp2saladecomputo.000webhostapp.com/Actualizar.php?fechaYHora=" + fechaYHora + "");
     }
 
     public void actualizarDatos(String URL){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+                Toast.makeText(getApplicationContext(), "Actualización exitosa", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> parametros = new HashMap<String, String>();
-                parametros.put("numeroDeTrabajador", txtNumero.getText().toString());
-                parametros.put("apellidos", txtApellidos.getText().toString());
-                parametros.put("nombre", txtNombre.getText().toString());
-                parametros.put("fechaYHora", fechaYHora);
                 parametros.put("impresiones", txtImpresiones.getText().toString());
                 parametros.put("observaciones", txtObservaciones.getText().toString());
                 return parametros;
@@ -93,11 +90,12 @@ public class ModificarDatos extends AppCompatActivity {
                         txtApellidos.setText(jsonObject.getString("apellidos"));
                         txtNombre.setText(jsonObject.getString("nombre"));
                         txtfechaYHora.setText(jsonObject.getString("fechaYHora"));
+
                         if(!jsonObject.getString("impresiones").equals("")){
                             txtImpresiones.setText(jsonObject.getString("impresiones"));
                         }
                         if(!jsonObject.getString("observaciones").equals("")){
-                            txtImpresiones.setText("observaciones");
+                            txtObservaciones.setText(jsonObject.getString("observaciones"));
                         }
 
                     }catch(JSONException e){

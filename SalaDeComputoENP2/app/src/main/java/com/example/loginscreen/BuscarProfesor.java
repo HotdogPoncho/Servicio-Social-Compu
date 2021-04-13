@@ -2,27 +2,27 @@ package com.example.loginscreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class BuscarProfesor extends AppCompatActivity {
+
+    ScrollView scrollView;
 
     RadioButton optNumero, optNombre, optApellidos;
 
@@ -32,9 +32,10 @@ public class BuscarProfesor extends AppCompatActivity {
 
     String[] visitas = new String[0];
 
-    String fechaYHora;
+    String fechaYHora, fecha;
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,18 +49,27 @@ public class BuscarProfesor extends AppCompatActivity {
 
         lstVisitas = findViewById(R.id.lstvwProfesores);
 
-        lstVisitas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                fechaYHora = visitas[position];
-            }
+        scrollView = findViewById(R.id.ScrollView);
+
+        scrollView.setOnTouchListener((v, event) -> {
+            findViewById(R.id.ScrollView).getParent().requestDisallowInterceptTouchEvent(false);
+            return false;
+        });
+
+        lstVisitas.setOnTouchListener((v, event) -> {
+            v.getParent().requestDisallowInterceptTouchEvent(true);
+            return false;
+        });
+
+        lstVisitas.setOnItemClickListener((parent, view, position, id) -> {
+            fecha = visitas[position];
         });
 
     }
 
     public void modificar(View view){
         Intent modificarDatos = new Intent(BuscarProfesor.this, ModificarDatos.class);
-        modificarDatos.putExtra("fechaYHora", fechaYHora);
+        modificarDatos.putExtra("fechaYHora", fecha);
         startActivity(modificarDatos);
     }
 
@@ -78,34 +88,26 @@ public class BuscarProfesor extends AppCompatActivity {
     }
 
     public void buscarProfe(String URL, int opcion){
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                JSONObject jsonObject;
-                visitas = new String[response.length()];
-                for(int i = 0; i < response.length(); i++){
-                    try{
-                        jsonObject = response.getJSONObject(i);
-                        fechaYHora = jsonObject.getString("fechaYHora");
-                        visitas[i] = fechaYHora;
-                    }catch(JSONException e){
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, response -> {
+            JSONObject jsonObject;
+            visitas = new String[response.length()];
+            for(int i = 0; i < response.length(); i++){
+                try{
+                    jsonObject = response.getJSONObject(i);
+                    fechaYHora = jsonObject.getString("fechaYHora");
+                    visitas[i] = fechaYHora;
+                }catch(JSONException e){
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-                opcionBusqueda(opcion);
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            opcionBusqueda(opcion);
+        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
 
     public void visitas(){
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, visitas);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, visitas);
         lstVisitas.setAdapter(arrayAdapter);
     }
 
