@@ -48,6 +48,7 @@
                 android:onClick="cerrar"
                 android:text="Salir"
                 android:textColor="#FFFFFF" />
+
         </LinearLayout>
     </ScrollView>
 

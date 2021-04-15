@@ -6,16 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -56,9 +52,9 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        txtNumTrab = (EditText) findViewById(R.id.txtNumTrab);
-        txtApellidos = (EditText) findViewById(R.id.txtApellidos);
-        txtNombre = (EditText) findViewById(R.id.txtNombre);
+        txtNumTrab = findViewById(R.id.txtNumTrab);
+        txtApellidos = findViewById(R.id.txtApellidos);
+        txtNombre = findViewById(R.id.txtNombre);
 
         lstArea = findViewById(R.id.lstArea);
 
@@ -72,22 +68,25 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
 
         lstArea.setAdapter(customAdapter);
         lstArea.setOnItemSelectedListener(this);
-
-
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
         CustomItems items = (CustomItems)adapterView.getSelectedItem();
         area = items.getSpinnerText();
-        if(area.equals("Área I: Ciencias Físico - Matemáticas")){
-            spinnerOpciones(Area1, itemArea1);
-        }else if(area.equals("Área II: Biológicas y de la Salud")){
-            spinnerOpciones(Area2, itemArea2);
-        }else if(area.equals("Área III: Ciencias Sociales")){
-            spinnerOpciones(Area3, itemArea3);
-        }else{
-            spinnerOpciones(Area4, itemArea4);
+        switch(area) {
+            case "Área I: Ciencias Físico - Matemáticas":
+                spinnerOpciones(Area1, itemArea1);
+                break;
+            case "Área II: Biológicas y de la Salud":
+                spinnerOpciones(Area2, itemArea2);
+                break;
+            case "Área III: Ciencias Sociales":
+                spinnerOpciones(Area3, itemArea3);
+                break;
+            default:
+                spinnerOpciones(Area4, itemArea4);
+                break;
         }
     }
 
@@ -127,11 +126,10 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
         }else if(txtNombre.length() == 0){
             Toast.makeText(this, "Ingresa tu nombre", Toast.LENGTH_SHORT).show();
         }else{
-            ejecutarServicio("https://enp2saladecomputo.000webhostapp.com/registrarProfesor.php");
+            ejecutarServicio();
             Intent Inicio = new Intent(this, MainActivity.class);
             startActivity(Inicio);
         }
-
     }
 
     public void BorrarDatos(View view){
@@ -140,21 +138,14 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
         txtNombre.setText("");
     }
 
-    private void ejecutarServicio(String URL){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Registro exitoso, intente iniciando sesión", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-            }
+
+    private void ejecutarServicio(){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://enp2saladecomputo.000webhostapp.com/registrarProfesor.php", response -> Toast.makeText(getApplicationContext(), "Registro exitoso, intente iniciando sesión", Toast.LENGTH_SHORT).show(), error -> {
+
         }){
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<String, String>();
+            protected Map<String, String> getParams() {
+                Map<String, String> parametros = new HashMap<>();
                 parametros.put("numeroDeTrabajador", txtNumTrab.getText().toString());
                 parametros.put("apellidos", txtApellidos.getText().toString());
                 parametros.put("nombre", txtNombre.getText().toString());
@@ -166,5 +157,6 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
 
 }

@@ -7,17 +7,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.loginscreen.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,20 +50,10 @@ public class ModificarDatos extends AppCompatActivity {
     }
 
     public void actualizarDatos(String URL){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, response -> Toast.makeText(getApplicationContext(), "Actualización exitosa", Toast.LENGTH_SHORT).show(), error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show()){
             @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Actualización exitosa", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> parametros = new HashMap<String, String>();
+            protected Map<String, String> getParams() {
+                Map<String,String> parametros = new HashMap<>();
                 parametros.put("impresiones", txtImpresiones.getText().toString());
                 parametros.put("observaciones", txtObservaciones.getText().toString());
                 return parametros;
@@ -79,36 +64,28 @@ public class ModificarDatos extends AppCompatActivity {
     }
 
     public void buscarVisita(String URL){
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                JSONObject jsonObject;
-                for(int i = 0; i < response.length(); i++){
-                    try{
-                        jsonObject = response.getJSONObject(i);
-                        txtNumero.setText(jsonObject.getString("numeroDeTrabajador"));
-                        txtApellidos.setText(jsonObject.getString("apellidos"));
-                        txtNombre.setText(jsonObject.getString("nombre"));
-                        txtfechaYHora.setText(jsonObject.getString("fechaYHora"));
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, response -> {
+            JSONObject jsonObject;
+            for(int i = 0; i < response.length(); i++){
+                try{
+                    jsonObject = response.getJSONObject(i);
+                    txtNumero.setText(jsonObject.getString("numeroDeTrabajador"));
+                    txtApellidos.setText(jsonObject.getString("apellidos"));
+                    txtNombre.setText(jsonObject.getString("nombre"));
+                    txtfechaYHora.setText(jsonObject.getString("fechaYHora"));
 
-                        if(!jsonObject.getString("impresiones").equals("")){
-                            txtImpresiones.setText(jsonObject.getString("impresiones"));
-                        }
-                        if(!jsonObject.getString("observaciones").equals("")){
-                            txtObservaciones.setText(jsonObject.getString("observaciones"));
-                        }
-
-                    }catch(JSONException e){
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    if(!jsonObject.getString("impresiones").equals("")){
+                        txtImpresiones.setText(jsonObject.getString("impresiones"));
                     }
+                    if(!jsonObject.getString("observaciones").equals("")){
+                        txtObservaciones.setText(jsonObject.getString("observaciones"));
+                    }
+
+                }catch(JSONException e){
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }

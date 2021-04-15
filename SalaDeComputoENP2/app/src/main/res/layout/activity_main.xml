@@ -39,7 +39,12 @@
                 android:inputType="number"
                 android:singleLine="true"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF" />
+                android:textColorHint="#FFFFFF"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:drawablePadding="12dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/custom_icon_baseline_bagde"/>
 
             <Button
                 android:id="@+id/cmdIniciarSesion"
