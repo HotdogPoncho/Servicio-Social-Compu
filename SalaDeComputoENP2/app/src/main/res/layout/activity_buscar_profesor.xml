@@ -81,10 +81,14 @@
                 android:layout_marginStart="45dp"
                 android:layout_marginLeft="45dp"
                 android:layout_marginTop="50dp"
-                android:background="#FAFAFA"
+                android:background="#FFFFFF"
                 android:cacheColorHint="#FFFFFF"
-                android:longClickable="false"
-                tools:ignore="NestedScrolling" />
+                android:foregroundTint="#FFFFFF"
+                android:isScrollContainer="true"
+                android:keyboardNavigationCluster="true"
+                android:nestedScrollingEnabled="true"
+                android:scrollbarThumbHorizontal="@color/fondo"
+                android:scrollbarThumbVertical="@color/fondo" />
 
             <Button
                 android:id="@+id/cmdModificar"
@@ -96,6 +100,15 @@
                 android:background="@drawable/button_rounded"
                 android:onClick="modificar"
                 android:text="@string/modificar" />
+
+            <TextView
+                android:id="@+id/txtColegio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="T"
+                android:textColor="#FFFFFF"
+                android:visibility="visible" />
 
 
         </LinearLayout>

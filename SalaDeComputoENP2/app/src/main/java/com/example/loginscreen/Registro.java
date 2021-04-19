@@ -27,15 +27,15 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
 
     Spinner lstColegio, lstArea;
 
-    String[] Areas = {"Área I: Ciencias Físico - Matemáticas", "Área II: Biológicas y de la Salud", "Área III: Ciencias Sociales", "Área IV: Humanidades y Artes"};
+    String[] Areas = {"Area I: Ciencias Fisico - Matematicas", "Area II: Biologicas y de la Salud", "Area III: Ciencias Sociales", "Area IV: Humanidades y Artes"};
 
-    String[] Area1 = {"Física", "Informática", "Matemáticas"};
+    String[] Area1 = {"Fisica", "Informatica", "Matematicas"};
 
-    String[] Area2 = {"Biología", "Educación Física", "Morfología, Fisiología y Salud", "Orientación Educativa", "Psicologia e Higiene Mental", "Química"};
+    String[] Area2 = {"Biologia", "Educacion Fisica", "Morfologia, Fisiologia y Salud", "Orientacion Educativa", "Psicologia e Higiene Mental", "Quimica"};
 
-    String[] Area3 = {"Ciencias Sociales", "Geografía", "Historia"};
+    String[] Area3 = {"Ciencias Sociales", "Geografia", "Historia"};
 
-    String[] Area4 = {"Alemán", "Artes Plásticas", "Danza", "Dibujo y Modelado", "Filosofía", "Francés", "Inglés", "Italiano", "Letras Clásicas", "Literatura", "Música", "Teatro"};
+    String[] Area4 = {"Aleman", "Artes Plasticas", "Danza", "Dibujo y Modelado", "Filosofia", "Frances", "Ingles", "Italiano", "Letras Clasicas", "Literatura", "Musica", "Teatro"};
 
     int[] itemAreas = {R.drawable.ic_math, R.drawable.ic_area2, R.drawable.ic_ciencias_sociales, R.drawable.ic_area4};
 
@@ -75,13 +75,13 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
         CustomItems items = (CustomItems)adapterView.getSelectedItem();
         area = items.getSpinnerText();
         switch(area) {
-            case "Área I: Ciencias Físico - Matemáticas":
+            case "Area I: Ciencias Fisico - Matematicas":
                 spinnerOpciones(Area1, itemArea1);
                 break;
-            case "Área II: Biológicas y de la Salud":
+            case "Area II: Biologicas y de la Salud":
                 spinnerOpciones(Area2, itemArea2);
                 break;
-            case "Área III: Ciencias Sociales":
+            case "Area III: Ciencias Sociales":
                 spinnerOpciones(Area3, itemArea3);
                 break;
             default:
@@ -146,11 +146,11 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parametros = new HashMap<>();
-                parametros.put("numeroDeTrabajador", txtNumTrab.getText().toString());
-                parametros.put("apellidos", txtApellidos.getText().toString());
-                parametros.put("nombre", txtNombre.getText().toString());
-                parametros.put("area", area);
-                parametros.put("colegio", colegio);
+                parametros.put("numeroDeTrabajador", txtNumTrab.getText().toString().toUpperCase());
+                parametros.put("apellidos", txtApellidos.getText().toString().toUpperCase());
+                parametros.put("nombre", txtNombre.getText().toString().toUpperCase());
+                parametros.put("area", area.toUpperCase());
+                parametros.put("colegio", colegio.toUpperCase());
                 return parametros;
             }
         };

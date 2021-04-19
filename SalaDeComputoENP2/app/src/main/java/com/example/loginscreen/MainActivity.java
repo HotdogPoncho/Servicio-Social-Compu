@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     EditText txtNumTrab;
     TextView lblApellidos, lblNombre, lblFecha, lblHora;
 
+    String[] datos = new String[5];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +68,11 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < response.length(); i++) {
                 try {
                     jsonObject = response.getJSONObject(i);
-                    txtNumTrab.setText(jsonObject.getString("numeroDeTrabajador"));
-                    lblApellidos.setText(jsonObject.getString("apellidos"));
-                    lblNombre.setText(jsonObject.getString("nombre"));
+                    datos[0] = jsonObject.getString("numeroDeTrabajador");
+                    datos[1] = jsonObject.getString("apellidos");
+                    datos[2] = jsonObject.getString("nombre");
+                    datos[3] = jsonObject.getString("area");
+                    datos[4] = jsonObject.getString("colegio");
                     registrarInicio("https://enp2saladecomputo.000webhostapp.com/registrarUso.php");
                 } catch (JSONException e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -76,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }, error -> {
             Toast.makeText(getApplicationContext(), "Usuario no registrado, registrese por favor", Toast.LENGTH_SHORT).show();
-            Intent registrarse = new Intent(MainActivity.this, Registro.class);
+            Intent registrarse = new Intent(MainActivity.this, RegistroInvalido.class);
             startActivity(registrarse);
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -92,9 +96,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parametros = new HashMap<>();
-                parametros.put("numeroDeTrabajador", txtNumTrab.getText().toString());
-                parametros.put("apellidos", lblApellidos.getText().toString());
-                parametros.put("nombre", lblNombre.getText().toString());
+                parametros.put("numeroDeTrabajador", datos[0]);
+                parametros.put("apellidos", datos[1]);
+                parametros.put("nombre", datos[2]);
+                parametros.put("area", datos[3]);
+                parametros.put("colegio", datos[4]);
                 parametros.put("fechaYHora", lblFecha.getText().toString() + " - " + lblHora.getText().toString());
                 parametros.put("impresiones", "");
                 parametros.put("observaciones", "");

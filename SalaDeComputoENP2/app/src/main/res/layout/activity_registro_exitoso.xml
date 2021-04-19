@@ -16,12 +16,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="349dp"
+                android:layout_height="196dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginLeft="40dp"
+                android:src="@drawable/registro_exitoso"/>
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="269dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="250dp"
-                android:layout_marginLeft="65dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="70dp"
                 android:text="REGISTRO EXITOSO"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
@@ -32,7 +39,7 @@
                 android:layout_width="353dp"
                 android:layout_height="80dp"
                 android:layout_marginTop="1dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="35dp"
                 android:text="PUEDE CERRAR LA APLICACION"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
@@ -48,6 +55,7 @@
                 android:onClick="cerrar"
                 android:text="Salir"
                 android:textColor="#FFFFFF" />
+
 
         </LinearLayout>
     </ScrollView>
