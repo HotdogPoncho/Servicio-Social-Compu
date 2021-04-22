@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public void IniciarSesion(View view){
         if(txtNumTrab.length() == 0){
             Toast.makeText(this, "Ingresa tu Número de Trabajador", Toast.LENGTH_SHORT).show();
-        }else if(txtNumTrab.getText().toString().equals("290702")){
+        }else if(txtNumTrab.getText().toString().equals("819423") || txtNumTrab.getText().toString().equals("290702")){
             Intent pantalla = new Intent(MainActivity.this , BuscarProfesor.class);
             startActivity(pantalla);
         }else{

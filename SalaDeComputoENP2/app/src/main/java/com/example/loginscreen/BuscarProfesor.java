@@ -31,8 +31,6 @@ import org.json.JSONObject;
 
 public class BuscarProfesor extends AppCompatActivity {
 
-    RadioButton optNumero, optNombre, optApellidos;
-
     EditText txtBuscar;
 
     TextView txtColegio;
@@ -70,10 +68,6 @@ public class BuscarProfesor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_profesor);
 
-        optNumero = findViewById(R.id.optNumero);
-        optNombre = findViewById(R.id.optNombre);
-        optApellidos = findViewById(R.id.optApellidos);
-
         txtBuscar = findViewById(R.id.txtBuscar);
 
         lstVisitas = findViewById(R.id.lstvwProfesores);
@@ -108,13 +102,7 @@ public class BuscarProfesor extends AppCompatActivity {
 
     public void buscar(View view) {
         if (txtBuscar.length() > 0) {
-            if (optNumero.isChecked()) {
-                buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaNumero.php?numeroDeTrabajador=" + txtBuscar.getText().toString() + "");
-            } else if (optNombre.isChecked()) {
-                buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaNombre.php?nombre=" + txtBuscar.getText().toString() + "");
-            } else {
-                buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaApellido.php?apellidos=" + txtBuscar.getText().toString() + "");
-            }
+            buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaApellido.php?apellidos=" + txtBuscar.getText().toString() + "");
         } else {
             Toast.makeText(this, "Ingrese algo para buscar", Toast.LENGTH_SHORT).show();
         }
@@ -132,8 +120,6 @@ public class BuscarProfesor extends AppCompatActivity {
                 }
             }
         }
-
-        //items[0] = itemsColegios[1];
 
         CustomAdapterListView customAdapter = new CustomAdapterListView(this, nombres, visitas, items);
         lstVisitas.setAdapter(customAdapter);

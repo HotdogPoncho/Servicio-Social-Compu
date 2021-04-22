@@ -16,51 +16,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="309dp"
-                android:layout_height="118dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="28dp"
-                tools:ignore="MissingConstraints">
-
-                <RadioButton
-                    android:id="@+id/optNumero"
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:text="@string/numero_de_trabajador"
-                    android:textColor="#FFFFFF" />
-
-                <RadioButton
-                    android:id="@+id/optNombre"
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:text="@string/nombre"
-                    android:textColor="#FFFFFF" />
-
-                <RadioButton
-                    android:id="@+id/optApellidos"
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:checked="true"
-                    android:text="@string/apellidos"
-                    android:textColor="#FFFFFF" />
-
-            </RadioGroup>
-
             <EditText
                 android:id="@+id/txtBuscar"
                 android:layout_width="250dp"
                 android:layout_height="41dp"
                 android:layout_marginStart="40dp"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:autofillHints=""
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text=""
                 android:textColor="#FFFFFF"
+                android:hint="Apellidos"
+                android:textColorHint="@color/white"
+                android:paddingStart="12dp"
                 tools:ignore="LabelFor" />
 
             <Button
@@ -76,16 +46,17 @@
 
             <ListView
                 android:id="@+id/lstvwProfesores"
-                android:layout_width="314dp"
-                android:layout_height="380dp"
+                android:layout_width="315dp"
+                android:layout_height="523dp"
                 android:layout_marginStart="45dp"
-                android:layout_marginLeft="45dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="50dp"
                 android:background="#FFFFFF"
-                android:cacheColorHint="#FFFFFF"
-                android:foregroundTint="#FFFFFF"
+                android:cacheColorHint="#000000"
+                android:foregroundTint="#000000"
                 android:isScrollContainer="true"
                 android:keyboardNavigationCluster="true"
+                android:listSelector="@drawable/custom_selector"
                 android:nestedScrollingEnabled="true"
                 android:scrollbarThumbHorizontal="@color/fondo"
                 android:scrollbarThumbVertical="@color/fondo" />
