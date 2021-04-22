@@ -8,8 +8,9 @@ android {
 
     defaultConfig {
         applicationId "com.example.loginscreen"
-        minSdkVersion 26
-        targetSdkVersion 26
+        minSdkVersion 21
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
 
