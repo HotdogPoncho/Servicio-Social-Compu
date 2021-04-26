@@ -33,9 +33,9 @@ public class BuscarProfesor extends AppCompatActivity {
 
     EditText txtBuscar;
 
-    TextView txtColegio;
-
     ListView lstVisitas;
+
+    RadioButton optProfesores, optVisitas;
 
     String[] visitas = new String[0];
 
@@ -44,6 +44,8 @@ public class BuscarProfesor extends AppCompatActivity {
     String[] numeros = new String[0];
 
     String[] colegios = new String[0];
+
+    String[] areas = new String[0];
 
     int[] items = new int[0];
 
@@ -58,7 +60,9 @@ public class BuscarProfesor extends AppCompatActivity {
                    R.drawable.ic_aleman, R.drawable.ic_escultura, R.drawable.ic_danza, R.drawable.ic_bosquejo, R.drawable.ic_filosofia, R.drawable.ic_frances, R.drawable.ic_english, R.drawable.ic_italiano, R.drawable.ic_letras, R.drawable.ic_literatura, R.drawable.ic_musica, R.drawable.ic_teatro};
 
 
-    String fechaYHora, fecha, nombre, numero, colegio;
+    String fechaYHora, fecha, nombre, numero, colegio, area;
+
+    boolean control;
 
     CountDownTimer inactividad;
 
@@ -72,10 +76,16 @@ public class BuscarProfesor extends AppCompatActivity {
 
         lstVisitas = findViewById(R.id.lstvwProfesores);
 
-        txtColegio = findViewById(R.id.txtColegio);
+        optProfesores = findViewById(R.id.optProfesores);
+
+        optVisitas = findViewById(R.id.optVisitas);
 
         lstVisitas.setOnItemClickListener((parent, view, position, id) -> {
-            fecha = visitas[position];
+            if(control){
+                fecha = visitas[position];
+            }else{
+                fecha = numeros[position];
+            }
             view.setSelected(true);
         });
 
@@ -92,23 +102,37 @@ public class BuscarProfesor extends AppCompatActivity {
                 finishAffinity();
             }
         }.start();
+
+        buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaInicial.php?");
+
     }
 
     public void modificar(View view){
-        Intent modificarDatos = new Intent(BuscarProfesor.this, ModificarDatos.class);
-        modificarDatos.putExtra("fechaYHora", fecha);
-        startActivity(modificarDatos);
+        if(control){
+            Intent modificarDatos = new Intent(BuscarProfesor.this, ModificarDatos.class);
+            modificarDatos.putExtra("fechaYHora", fecha);
+            startActivity(modificarDatos);
+        }else{
+            Intent modificarDatos = new Intent(BuscarProfesor.this, ModificarDatosProfesores.class);
+            modificarDatos.putExtra("fechaYHora", fecha);
+            startActivity(modificarDatos);
+        }
     }
 
     public void buscar(View view) {
         if (txtBuscar.length() > 0) {
-            buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaApellido.php?apellidos=" + txtBuscar.getText().toString() + "");
+            if(optVisitas.isChecked()){
+                buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaApellido.php?apellidos=" + txtBuscar.getText().toString() + "");
+            }else{
+                buscarProfe();
+            }
+
         } else {
             Toast.makeText(this, "Ingrese algo para buscar", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void item(){
+    public void item(String[] datos){
 
         items = new int[colegios.length];
 
@@ -121,7 +145,7 @@ public class BuscarProfesor extends AppCompatActivity {
             }
         }
 
-        CustomAdapterListView customAdapter = new CustomAdapterListView(this, nombres, visitas, items);
+        CustomAdapterListView customAdapter = new CustomAdapterListView(this, nombres, datos, items);
         lstVisitas.setAdapter(customAdapter);
 
     }
@@ -148,7 +172,38 @@ public class BuscarProfesor extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
-            item();
+            control = true;
+            item(visitas);
+        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    public void buscarProfe(){
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest("https://enp2saladecomputo.000webhostapp.com/BusquedaProfesores.php?apellidos=" + txtBuscar.getText().toString() + "", response -> {
+            JSONObject jsonObject;
+            numeros = new String[response.length()];
+            nombres = new String[response.length()];
+            areas = new String[response.length()];
+            colegios = new String[response.length()];
+            for(int i = 0; i < response.length(); i++){
+                try{
+                    jsonObject = response.getJSONObject(i);
+                    numero = jsonObject.getString("numeroDeTrabajador");
+                    nombre = jsonObject.getString("nombre") + " " + jsonObject.getString("apellidos");
+                    area = jsonObject.getString("area");
+                    colegio = jsonObject.getString("colegio");
+
+                    numeros[i] = numero;
+                    nombres[i] = nombre;
+                    areas[i] = area;
+                    colegios[i] = colegio;
+                }catch(JSONException e){
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+            control = false;
+            item(colegios);
         }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
@@ -169,7 +224,7 @@ public class BuscarProfesor extends AppCompatActivity {
         String[] nombre, visita;
         int[] item;
 
-        CustomAdapterListView(Context context, String[] nombre, String[] visita, int[] item){
+        CustomAdapterListView(Context context, String[] nombre, String[] visita, int[] item) {
             super(context, R.layout.custom_listview_layout, nombre);
             this.context = context;
             this.nombre = nombre;
@@ -177,9 +232,18 @@ public class BuscarProfesor extends AppCompatActivity {
             this.item = item;
         }
 
+        public String getNombre(int i){
+            return nombre[i];
+        }
+
+        public String getVisita(int i){
+            return visita[i];
+        }
+
         @NonNull
         @Override
         public View getView(int position, @Nullable View view, @NonNull ViewGroup parent) {
+
             LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View lstVisitas = layoutInflater.inflate(R.layout.custom_listview_layout, parent, false);
 
@@ -188,8 +252,8 @@ public class BuscarProfesor extends AppCompatActivity {
             TextView visita = lstVisitas.findViewById(R.id.Visita);
 
             imageView.setImageResource(items[position]);
-            nombre.setText(nombres[position]);
-            visita.setText(visitas[position]);
+            nombre.setText(this.getNombre(position));
+            visita.setText(this.getVisita(position));
 
             return lstVisitas;
         }

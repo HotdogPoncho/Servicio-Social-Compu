@@ -16,6 +16,31 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_marginLeft="40dp">
+
+                <RadioButton
+                    android:id="@+id/optProfesores"
+                    android:layout_width="185dp"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#04A475"
+                    android:text="Profesores Registrados"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/optVisitas"
+                    android:layout_width="185dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#FFFFFF"
+                    android:buttonTint="#04A475"
+                    android:checked="true"
+                    android:text="Control de Uso"
+                    android:textColor="@color/white" />
+            </RadioGroup>
+
             <EditText
                 android:id="@+id/txtBuscar"
                 android:layout_width="250dp"
@@ -30,6 +55,9 @@
                 android:textColor="#FFFFFF"
                 android:hint="Apellidos"
                 android:textColorHint="@color/white"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_icon_baseline_person"
+                android:drawablePadding="12dp"
                 android:paddingStart="12dp"
                 tools:ignore="LabelFor" />
 
@@ -47,7 +75,7 @@
             <ListView
                 android:id="@+id/lstvwProfesores"
                 android:layout_width="315dp"
-                android:layout_height="523dp"
+                android:layout_height="395dp"
                 android:layout_marginStart="45dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="50dp"
@@ -71,15 +99,6 @@
                 android:background="@drawable/button_rounded"
                 android:onClick="modificar"
                 android:text="@string/modificar" />
-
-            <TextView
-                android:id="@+id/txtColegio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="T"
-                android:textColor="#FFFFFF"
-                android:visibility="visible" />
 
 
         </LinearLayout>

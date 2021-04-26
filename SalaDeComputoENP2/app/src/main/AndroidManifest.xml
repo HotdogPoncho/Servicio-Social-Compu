@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RegistroInvalido"></activity>
+        <activity android:name=".ModificarDatosProfesores"></activity>
+        <activity android:name=".RegistroInvalido" />
         <activity android:name=".ModificarDatos" />
         <activity android:name=".BuscarProfesor" />
         <activity android:name=".RegistroExitoso" />
