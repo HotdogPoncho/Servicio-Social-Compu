@@ -124,11 +124,15 @@ public class BuscarProfesor extends AppCompatActivity {
             if(optVisitas.isChecked()){
                 buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaApellido.php?apellidos=" + txtBuscar.getText().toString() + "");
             }else{
-                buscarProfe();
+                buscarProfesor("https://enp2saladecomputo.000webhostapp.com/BusquedaProfesores.php?apellidos=" + txtBuscar.getText().toString() + "");
             }
 
         } else {
-            Toast.makeText(this, "Ingrese algo para buscar", Toast.LENGTH_SHORT).show();
+            if(optVisitas.isChecked()){
+                buscarProfe("https://enp2saladecomputo.000webhostapp.com/BuscarTodasVisitas.php");
+            }else{
+                buscarProfesor("https://enp2saladecomputo.000webhostapp.com/BuscarTodosProfesores.php");
+            }
         }
     }
 
@@ -174,13 +178,13 @@ public class BuscarProfesor extends AppCompatActivity {
             }
             control = true;
             item(visitas);
-        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
+        }, error -> Toast.makeText(getApplicationContext(), "No se encontró al profesor.", Toast.LENGTH_SHORT).show());
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
 
-    public void buscarProfe(){
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest("https://enp2saladecomputo.000webhostapp.com/BusquedaProfesores.php?apellidos=" + txtBuscar.getText().toString() + "", response -> {
+    public void buscarProfesor(String URL){
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest( URL, response -> {
             JSONObject jsonObject;
             numeros = new String[response.length()];
             nombres = new String[response.length()];
@@ -204,7 +208,7 @@ public class BuscarProfesor extends AppCompatActivity {
             }
             control = false;
             item(colegios);
-        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
+        }, error -> Toast.makeText(getApplicationContext(), "No se encontró al profesor.", Toast.LENGTH_SHORT).show());
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
