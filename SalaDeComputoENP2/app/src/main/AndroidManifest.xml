@@ -12,7 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ModificarDatosProfesores"></activity>
+        <activity
+            android:name=".Estadisticas"
+            android:exported="true" />
+        <activity
+            android:name=".InterfazAdministrador"
+            android:exported="true" />
+        <activity android:name=".ModificarDatosProfesores" />
         <activity android:name=".RegistroInvalido" />
         <activity android:name=".ModificarDatos" />
         <activity android:name=".BuscarProfesor" />

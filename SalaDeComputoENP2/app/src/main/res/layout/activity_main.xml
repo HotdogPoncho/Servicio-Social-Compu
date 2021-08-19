@@ -24,7 +24,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="142dp"
                 android:layout_marginTop="60dp"
-                android:contentDescription="TODO"
                 app:srcCompat="@drawable/formicon" />
 
             <EditText
@@ -33,18 +32,19 @@
                 android:layout_height="42dp"
                 android:layout_marginLeft="45dp"
                 android:layout_marginTop="116dp"
+                android:background="@drawable/custom_input"
+                android:drawableLeft="@drawable/custom_icon_baseline_bagde"
+                android:drawablePadding="12dp"
                 android:ems="10"
                 android:hint="@string/txtNumTrab"
                 android:importantForAutofill="no"
                 android:inputType="number"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
                 android:singleLine="true"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:drawablePadding="12dp"
-                android:background="@drawable/custom_input"
-                android:drawableLeft="@drawable/custom_icon_baseline_bagde"/>
+                tools:ignore="TouchTargetSizeCheck" />
 
             <Button
                 android:id="@+id/cmdIniciarSesion"

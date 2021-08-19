@@ -136,6 +136,8 @@ public class ModificarDatosProfesores extends AppCompatActivity implements Adapt
             Toast.makeText(this, "Ingresa tu nombre", Toast.LENGTH_SHORT).show();
         }else{
             ejecutarServicio();
+            ejecutarServicio("https://enp2saladecomputo.000webhostapp.com/ModificacionColegio.php?numeroDeTrabajador=" + numero);
+
         }
     }
 
@@ -155,6 +157,21 @@ public class ModificarDatosProfesores extends AppCompatActivity implements Adapt
                 parametros.put("apellidos", txtApellidos.getText().toString().toUpperCase());
                 parametros.put("nombre", txtNombre.getText().toString().toUpperCase());
                 parametros.put("area", area.toUpperCase());
+                parametros.put("colegio", colegio.toUpperCase());
+                return parametros;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    private void ejecutarServicio(String URL){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, response -> Toast.makeText(getApplicationContext(), "Actualización exitosa.", Toast.LENGTH_SHORT).show(), error -> {
+
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parametros = new HashMap<>();
                 parametros.put("colegio", colegio.toUpperCase());
                 return parametros;
             }

@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         if(txtNumTrab.length() == 0){
             Toast.makeText(this, "Ingresa tu Número de Trabajador", Toast.LENGTH_SHORT).show();
         }else if(txtNumTrab.getText().toString().equals("819423") || txtNumTrab.getText().toString().equals("290702")){
-            Intent pantalla = new Intent(MainActivity.this , BuscarProfesor.class);
+            Intent pantalla = new Intent(MainActivity.this , InterfazAdministrador.class);
             startActivity(pantalla);
         }else{
             String fecha = new Date().toString();
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(RegistroExitoso);
         }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show()){
             @Override
-            protected Map<String, String> getParams() {
+            protected Map<String,String> getParams() {
                 Map<String, String> parametros = new HashMap<>();
                 parametros.put("numeroDeTrabajador", datos[0]);
                 parametros.put("apellidos", datos[1]);
@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                 parametros.put("area", datos[3]);
                 parametros.put("colegio", datos[4]);
                 parametros.put("fechaYHora", lblFecha.getText().toString() + " - " + lblHora.getText().toString());
-                parametros.put("impresiones", "");
                 parametros.put("observaciones", "");
                 return parametros;
             }

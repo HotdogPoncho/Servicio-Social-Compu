@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -16,14 +18,21 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ModificarDatos extends AppCompatActivity {
+public class ModificarDatos extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     String fechaYHora;
 
     EditText txtNumero, txtApellidos, txtNombre, txtfechaYHora, txtImpresiones, txtObservaciones;
+
+    Spinner cboConceptos;
+
+    String[] conceptos = {"1er Avance Programático", "2do Avance Programático", "3er Avance Programático", "Informe Anual", "Proyecto Anual","Calificaciones 1er Trimestre", "Calificaciones 2do Trimestre", "Calificaciones 3er Trimestre", "Calificaciones Finales", "Asuntos Personales", "Rectificaciones de Calificaiones"};
+
+    String concepto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +45,20 @@ public class ModificarDatos extends AppCompatActivity {
         txtImpresiones = findViewById(R.id.txtImpresiones);
         txtObservaciones = findViewById(R.id.txtObservaciones);
 
+        cboConceptos = findViewById(R.id.cboConceptos);
+
         fechaYHora = getIntent().getStringExtra("fechaYHora");
+
+        ArrayList<CustomItems> customItemsArrayList = new ArrayList<>();
+
+        for(String concepto : conceptos){
+            customItemsArrayList.add(new CustomItems(concepto, R.drawable.ic_concepto));
+        }
+
+        CustomAdapter customAdapter = new CustomAdapter(this, customItemsArrayList);
+
+        cboConceptos.setAdapter(customAdapter);
+        cboConceptos.setOnItemSelectedListener(this);
 
         buscarVisita("https://enp2saladecomputo.000webhostapp.com/BuscarDatos.php?fechaYHora=" + fechaYHora + "");
     }
@@ -55,6 +77,7 @@ public class ModificarDatos extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String,String> parametros = new HashMap<>();
                 parametros.put("impresiones", txtImpresiones.getText().toString());
+                parametros.put("conceptoDeImpresion", concepto);
                 parametros.put("observaciones", txtObservaciones.getText().toString());
                 return parametros;
             }
@@ -90,4 +113,13 @@ public class ModificarDatos extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        concepto = conceptos[position];
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

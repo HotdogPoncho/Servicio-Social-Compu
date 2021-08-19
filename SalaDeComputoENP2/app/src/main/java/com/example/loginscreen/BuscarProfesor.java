@@ -263,4 +263,10 @@ public class BuscarProfesor extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaInicial.php?");
+        optVisitas.setChecked(true);
+    }
 }
