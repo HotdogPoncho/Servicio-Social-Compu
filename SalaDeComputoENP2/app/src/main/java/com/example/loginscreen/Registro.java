@@ -140,7 +140,7 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
 
 
     private void ejecutarServicio(){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://enp2saladecomputo.000webhostapp.com/registrarProfesor.php", response -> Toast.makeText(getApplicationContext(), "Registro exitoso, intente iniciando sesión", Toast.LENGTH_SHORT).show(), error -> {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://enp2saladecomputo.000webhostapp.com/Profesores/registrarProfesor.php", response -> Toast.makeText(getApplicationContext(), "Registro exitoso, intente iniciando sesión", Toast.LENGTH_SHORT).show(), error -> {
 
         }){
             @Override

@@ -1,7 +1,9 @@
 package com.example.loginscreen;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,8 +11,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -60,7 +65,7 @@ public class ModificarDatos extends AppCompatActivity implements AdapterView.OnI
         cboConceptos.setAdapter(customAdapter);
         cboConceptos.setOnItemSelectedListener(this);
 
-        buscarVisita("https://enp2saladecomputo.000webhostapp.com/BuscarDatos.php?fechaYHora=" + fechaYHora + "");
+        buscarVisita("https://enp2saladecomputo.000webhostapp.com/Profesores/BuscarDatos.php?fechaYHora=" + fechaYHora + "");
     }
 
     public void cerrar(View view){
@@ -68,7 +73,11 @@ public class ModificarDatos extends AppCompatActivity implements AdapterView.OnI
     }
 
     public void actualizar(View view){
-        actualizarDatos("https://enp2saladecomputo.000webhostapp.com/Actualizar.php?fechaYHora=" + fechaYHora + "");
+        actualizarDatos("https://enp2saladecomputo.000webhostapp.com/Profesores/Actualizar.php?fechaYHora=" + fechaYHora + "");
+    }
+
+    public void eliminar(View view){
+        eliminarDatos("https://enp2saladecomputo.000webhostapp.com/Profesores/EliminarRegistro.php?fechaYHora=" + fechaYHora +"");
     }
 
     public void actualizarDatos(String URL){
@@ -111,6 +120,23 @@ public class ModificarDatos extends AppCompatActivity implements AdapterView.OnI
         }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
+    }
+
+    public void eliminarDatos(String URL) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, response -> {
+            Toast.makeText(getApplicationContext(), "Eliminacion exitosa", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ModificarDatos.this, BuscarProfesor.class);
+            startActivity(intent);
+        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show()){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> parametros = new HashMap<>();
+                parametros.put("fechaYHora", txtfechaYHora.getText().toString());
+                return parametros;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
     @Override

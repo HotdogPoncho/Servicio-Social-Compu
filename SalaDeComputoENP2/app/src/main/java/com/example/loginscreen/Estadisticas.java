@@ -2,6 +2,7 @@ package com.example.loginscreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -73,13 +74,11 @@ public class Estadisticas extends AppCompatActivity implements AdapterView.OnIte
             txtImpresion.setText("");
         });
 
-        cmdBuscar.setOnClickListener(v -> {
-            obtenerDatos("https://enp2saladecomputo.000webhostapp.com/Estadistica.php?fechaYHora="+mes);
-        });
+        cmdBuscar.setOnClickListener(v -> obtenerDatos("https://enp2saladecomputo.000webhostapp.com/Profesores/Estadistica.php?fechaYHora="+mes));
     }
 
     public void obtenerDatos(String URL) {
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, response -> {
+        @SuppressLint("SetTextI18n") JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, response -> {
             JSONObject jsonObject;
             impresionesMensuales = 0;
             fecha = new String[response.length()];
@@ -97,8 +96,8 @@ public class Estadisticas extends AppCompatActivity implements AdapterView.OnIte
             for (int i = 0; i < fecha.length; i++) {
                 hora[i] = fecha[i].substring(14, 16);
             }
-            for(int i = 0; i < impresiones.length; i++){
-                impresionesMensuales += impresiones[i];
+            for (int impresion : impresiones) {
+                impresionesMensuales += impresion;
             }
             dato = horaDestacada(hora);
             if(hora[0] != null){
@@ -106,9 +105,7 @@ public class Estadisticas extends AppCompatActivity implements AdapterView.OnIte
                 txtHora.setText(dato+":00 hrs");
                 txtProfesor.setText(fecha.length+"");
             }
-        }, error -> {
-            Toast.makeText(getApplicationContext(), "No se encontraron datos del mes", Toast.LENGTH_SHORT).show();
-        });
+        }, error -> Toast.makeText(getApplicationContext(), "No se encontraron datos del mes", Toast.LENGTH_SHORT).show());
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
@@ -130,9 +127,9 @@ public class Estadisticas extends AppCompatActivity implements AdapterView.OnIte
         String auxHorario;
         int auxConteo;
 
-        for(int i = 0; i < hora.length; i++){
-            for(int j = 0; j < horario.length; j++){
-                if(hora[i].equals(horario[j])){
+        for (String s : hora) {
+            for (int j = 0; j < horario.length; j++) {
+                if (s.equals(horario[j])) {
                     conteo[j] += 1;
                     break;
                 }

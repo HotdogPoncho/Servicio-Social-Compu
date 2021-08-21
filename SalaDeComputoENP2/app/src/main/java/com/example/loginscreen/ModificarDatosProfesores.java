@@ -75,7 +75,7 @@ public class ModificarDatosProfesores extends AppCompatActivity implements Adapt
 
         numero = getIntent().getStringExtra("fechaYHora");
 
-        buscarProfe("https://enp2saladecomputo.000webhostapp.com/BuscarProfesor.php?numeroDeTrabajador=" + numero + "");
+        buscarProfe("https://enp2saladecomputo.000webhostapp.com/Profesores/BuscarProfesor.php?numeroDeTrabajador=" + numero + "");
 
     }
 
@@ -136,7 +136,9 @@ public class ModificarDatosProfesores extends AppCompatActivity implements Adapt
             Toast.makeText(this, "Ingresa tu nombre", Toast.LENGTH_SHORT).show();
         }else{
             ejecutarServicio();
-            ejecutarServicio("https://enp2saladecomputo.000webhostapp.com/ModificacionColegio.php?numeroDeTrabajador=" + numero);
+            ejecutarServicio("https://enp2saladecomputo.000webhostapp.com/Profesores/ModificacionProfesor.php?numeroDeTrabajador=" + numero);
+            Intent intent = new Intent(ModificarDatosProfesores.this, BuscarProfesor.class);
+            startActivity(intent);
 
         }
     }
@@ -147,7 +149,7 @@ public class ModificarDatosProfesores extends AppCompatActivity implements Adapt
 
 
     private void ejecutarServicio(){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://enp2saladecomputo.000webhostapp.com/ActualizarDatos.php?numeroDeTrabajador=" + numero + "", response -> Toast.makeText(getApplicationContext(), "Actualización exitosa.", Toast.LENGTH_SHORT).show(), error -> {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://enp2saladecomputo.000webhostapp.com/Profesores/ActualizarDatos.php?numeroDeTrabajador=" + numero + "", response -> Toast.makeText(getApplicationContext(), "Actualización exitosa.", Toast.LENGTH_SHORT).show(), error -> {
 
         }){
             @Override
@@ -172,6 +174,9 @@ public class ModificarDatosProfesores extends AppCompatActivity implements Adapt
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parametros = new HashMap<>();
+                parametros.put("nombre", txtNombre.getText().toString().toUpperCase());
+                parametros.put("apellidos", txtApellidos.getText().toString().toUpperCase());
+                parametros.put("area", area.toUpperCase());
                 parametros.put("colegio", colegio.toUpperCase());
                 return parametros;
             }

@@ -9,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -103,7 +101,7 @@ public class BuscarProfesor extends AppCompatActivity {
             }
         }.start();
 
-        buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaInicial.php?");
+        buscarProfe("https://enp2saladecomputo.000webhostapp.com/Profesores/BusquedaInicial.php?");
 
     }
 
@@ -122,16 +120,16 @@ public class BuscarProfesor extends AppCompatActivity {
     public void buscar(View view) {
         if (txtBuscar.length() > 0) {
             if(optVisitas.isChecked()){
-                buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaApellido.php?apellidos=" + txtBuscar.getText().toString() + "");
+                buscarProfe("https://enp2saladecomputo.000webhostapp.com/Profesores/BusquedaApellido.php?apellidos=" + txtBuscar.getText().toString() + "");
             }else{
-                buscarProfesor("https://enp2saladecomputo.000webhostapp.com/BusquedaProfesores.php?apellidos=" + txtBuscar.getText().toString() + "");
+                buscarProfesor("https://enp2saladecomputo.000webhostapp.com/Profesores/BusquedaProfesores.php?apellidos=" + txtBuscar.getText().toString() + "");
             }
 
         } else {
             if(optVisitas.isChecked()){
-                buscarProfe("https://enp2saladecomputo.000webhostapp.com/BuscarTodasVisitas.php");
+                buscarProfe("https://enp2saladecomputo.000webhostapp.com/Profesores/BuscarTodasVisitas.php");
             }else{
-                buscarProfesor("https://enp2saladecomputo.000webhostapp.com/BuscarTodosProfesores.php");
+                buscarProfesor("https://enp2saladecomputo.000webhostapp.com/Profesores/BuscarTodosProfesores.php");
             }
         }
     }
@@ -249,7 +247,7 @@ public class BuscarProfesor extends AppCompatActivity {
         public View getView(int position, @Nullable View view, @NonNull ViewGroup parent) {
 
             LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View lstVisitas = layoutInflater.inflate(R.layout.custom_listview_layout, parent, false);
+            @SuppressLint("ViewHolder") View lstVisitas = layoutInflater.inflate(R.layout.custom_listview_layout, parent, false);
 
             ImageView imageView = lstVisitas.findViewById(R.id.Item);
             TextView nombre = lstVisitas.findViewById(R.id.Nombre);
@@ -266,7 +264,7 @@ public class BuscarProfesor extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        buscarProfe("https://enp2saladecomputo.000webhostapp.com/BusquedaInicial.php?");
+        buscarProfe("https://enp2saladecomputo.000webhostapp.com/Profesores/BusquedaInicial.php?");
         optVisitas.setChecked(true);
     }
 }

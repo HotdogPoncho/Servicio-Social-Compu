@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             String[] fechaHora = fecha.split(" ");
             lblFecha.setText(fechaHora[2] + "/" + fechaHora[1] + "/" + fechaHora[5]);
             lblHora.setText(fechaHora[3]);
-            buscarProfesor("https://enp2saladecomputo.000webhostapp.com/IniciarSesion.php?numeroDeTrabajador="+txtNumTrab.getText().toString()+"");
+            buscarProfesor("https://enp2saladecomputo.000webhostapp.com/Profesores/IniciarSesion.php?numeroDeTrabajador="+txtNumTrab.getText().toString()+"");
         }
     }
 
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     datos[2] = jsonObject.getString("nombre");
                     datos[3] = jsonObject.getString("area");
                     datos[4] = jsonObject.getString("colegio");
-                    registrarInicio("https://enp2saladecomputo.000webhostapp.com/registrarUso.php");
+                    registrarInicio("https://enp2saladecomputo.000webhostapp.com/Profesores/registrarUso.php");
                 } catch (JSONException e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
