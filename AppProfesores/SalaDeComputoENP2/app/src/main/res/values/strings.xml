@@ -1,0 +1,28 @@
+<resources>
+
+    <string name="app_name">Sala De Computo ENP2</string>
+    <string name="txtNumTrab">Número de Trabajador</string>
+    <string name="cmdIniciarSesion">Iniciar Sesión</string>
+    <string name="cmdRegistrarse">Registrarse</string>
+    <string name="modificar">Modificar</string>
+    <string name="buscar">Buscar</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="nombre">Nombre</string>
+    <string name="numero_de_trabajador">Número De Trabajador</string>
+    <string name="seleccionar">Seleccione una opción</string>
+    <string name="modificarDatos">Modificar Datos</string>
+    <string name="estadisticas">Estadisticas</string>
+    <string name="mes">Mes</string>
+    <string name="profesoresRegistrados">Profesores registrados en el mes</string>
+    <string name="horaDemandada">Hora más solicitada</string>
+    <string name="impresionesMensuales">Impresiones totales mensuales</string>
+    <string name="limpiar">Limpiar</string>
+    <string name="cero">0</string>
+    <string name="salir">Salir</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="n_mero_de_trabajador">Número de Trabajador</string>
+    <string name="borrar">Borrar</string>
+    <string name="todo">TODO</string>
+    <string name="guardar">Guardar</string>
+    <string name="registroInvalido">REGISTRO INVÁLIDO</string>
+</resources>

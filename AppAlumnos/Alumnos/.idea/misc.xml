@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/button_rounded.xml" value="0.2203125" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/button_rounded_border.xml" value="0.2203125" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/custom_input.xml" value="0.2203125" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/custom_input_badge.xml" value="0.2203125" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/custom_input_person.xml" value="0.2203125" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/custom_select_spinner.xml" value="0.2203125" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout-land/activity_main.xml" value="0.1728395061728395" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout-land/activity_registro_exitoso.xml" value="0.1728395061728395" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout-land/activity_registro_invalido.xml" value="0.18" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_registro_alumnos.xml" value="0.22" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_registro_exitoso.xml" value="0.19157608695652173" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_registro_invalido.xml" value="0.19157608695652173" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/custom.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/custom_spinner_item.xml" value="0.20416666666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

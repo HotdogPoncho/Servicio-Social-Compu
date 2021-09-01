@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Alumnos</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="numero_de_cuenta">Numero De Cuenta</string>
+    <string name="iniciar_sesion">Iniciar Sesion</string>
+    <string name="registro_exitoso">REGISTRO EXITOSO</string>
+    <string name="puede_cerrar_la_aplicacion">PUEDE CERRAR LA APLICACION</string>
+    <string name="salir">Salir</string>
+    <string name="registro_inv_lido">REGISTRO INVÁLIDO</string>
+    <string name="registre_su_numero_de_trabajador">REGISTRE SU NUMERO DE TRABAJADOR</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="nombre">Nombre</string>
+    <string name="limpiar">Limpiar</string>
+</resources>

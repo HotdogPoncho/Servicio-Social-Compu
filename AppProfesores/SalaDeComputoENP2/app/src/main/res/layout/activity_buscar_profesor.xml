@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#202732"
+    tools:context=".BuscarProfesor">
+
+    <ScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_marginLeft="40dp">
+
+                <RadioButton
+                    android:id="@+id/optProfesores"
+                    android:layout_width="185dp"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#04A475"
+                    android:text="Profesores Registrados"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/optVisitas"
+                    android:layout_width="185dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#FFFFFF"
+                    android:buttonTint="#04A475"
+                    android:checked="true"
+                    android:text="Control de Uso"
+                    android:textColor="@color/white" />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/txtBuscar"
+                android:layout_width="250dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="50dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:hint="Apellidos"
+                android:textColorHint="@color/white"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_icon_baseline_person"
+                android:drawablePadding="12dp"
+                android:paddingStart="12dp"
+                tools:ignore="LabelFor" />
+
+            <Button
+                android:id="@+id/cmdBuscar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="255dp"
+                android:layout_marginLeft="255dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_rounded"
+                android:onClick="buscar"
+                android:text="@string/buscar" />
+
+            <ListView
+                android:id="@+id/lstvwProfesores"
+                android:layout_width="315dp"
+                android:layout_height="395dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="50dp"
+                android:background="#FFFFFF"
+                android:cacheColorHint="#000000"
+                android:foregroundTint="#000000"
+                android:isScrollContainer="true"
+                android:keyboardNavigationCluster="true"
+                android:listSelector="@drawable/custom_selector"
+                android:nestedScrollingEnabled="true"
+                android:scrollbarThumbHorizontal="@color/fondo"
+                android:scrollbarThumbVertical="@color/fondo" />
+
+            <Button
+                android:id="@+id/cmdModificar"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_rounded"
+                android:onClick="modificar"
+                android:text="@string/modificar" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
