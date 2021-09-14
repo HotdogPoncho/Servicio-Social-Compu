@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gris"
+    android:orientation="vertical"
+    tools:context=".BuscarAlumnos">
+
+  <ScrollView
+      android:layout_width="729dp"
+      android:layout_height="409dp"
+      android:layout_marginStart="1dp"
+      android:layout_marginTop="1dp"
+      android:layout_marginEnd="1dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+      <RadioGroup
+          android:id="@+id/radioGroup2"
+          android:layout_width="350dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="27dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="32dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/optAlumnos"
+            android:layout_width="185dp"
+            android:layout_height="48dp"
+            android:buttonTint="#04A475"
+            android:text="@string/alumnos_registrados"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/optVisitas"
+            android:layout_width="185dp"
+            android:layout_height="48dp"
+            android:backgroundTint="#FFFFFF"
+            android:buttonTint="#04A475"
+            android:checked="true"
+            android:text="@string/control_de_uso"
+            android:textColor="@color/white" />
+
+      </RadioGroup>
+
+      <EditText
+          android:id="@+id/txtBuscar"
+          android:layout_width="278dp"
+          android:layout_height="48dp"
+          android:layout_marginStart="27dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="104dp"
+          android:drawableStart="@drawable/custom_input_person"
+          android:drawablePadding="18dp"
+          android:ems="10"
+          android:hint="@string/apellidos"
+          android:importantForAutofill="no"
+          android:inputType="textPersonName"
+          android:paddingStart="18dp"
+          android:textColor="@color/white"
+          android:textColorHint="@color/white"
+          android:textSize="18sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+      <Button
+          android:id="@+id/cmdBuscar"
+          android:layout_width="100dp"
+          android:layout_height="48dp"
+          android:layout_marginStart="276dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="33dp"
+          android:background="@drawable/button_rounded"
+          android:text="@string/buscar"
+          android:textColor="@color/white"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/txtBuscar"
+          tools:ignore="TextContrastCheck" />
+
+      <ListView
+          android:id="@+id/lstAlumnos"
+          android:layout_width="354dp"
+          android:layout_height="395dp"
+          android:layout_marginStart="27dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="28dp"
+          android:background="#FFFFFF"
+          android:cacheColorHint="#000000"
+          android:foregroundTint="#000000"
+          android:isScrollContainer="true"
+          android:keyboardNavigationCluster="true"
+          android:listSelector="@drawable/custom_list_selector"
+          android:nestedScrollingEnabled="true"
+          android:scrollbarThumbHorizontal="@color/verde"
+          android:scrollbarThumbVertical="@color/verde"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/cmdBuscar" />
+
+      <Button
+          android:id="@+id/cmdModificar"
+          android:layout_width="219dp"
+          android:layout_height="48dp"
+          android:layout_marginStart="100dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="90dp"
+          android:background="@drawable/button_rounded"
+          android:text="@string/modificar"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/lstAlumnos" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+  </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

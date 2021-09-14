@@ -1,4 +1,4 @@
-package com.example.loginscreen;
+package com.example.alumnos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,9 +22,9 @@ import java.util.ArrayList;
 
 public class Estadisticas extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    Button cmdLimpiar, cmdBuscar;
+    Button cmdLimpiar, cmdBuscar, cmdSalir;
 
-    TextView txtHora, txtProfesor, txtImpresion;
+    TextView txtHora, txtAlmumno, txtImpresion;
 
     Spinner cboMes;
 
@@ -50,12 +50,12 @@ public class Estadisticas extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void inicializar() {
-        cmdLimpiar = findViewById(R.id.cmdLimpiar);
-        cmdBuscar = findViewById(R.id.cmdBuscar);
-        txtHora = findViewById(R.id.txtHora);
-        txtProfesor = findViewById(R.id.txtProfesores);
-        txtImpresion = findViewById(R.id.txtImpresiones);
-        cboMes = findViewById(R.id.cboMes);
+        cmdLimpiar = findViewById(R.id.cmdLimpiarE);
+        cmdBuscar = findViewById(R.id.cmdBuscarE);
+        txtHora = findViewById(R.id.txtHoraE);
+        txtAlmumno = findViewById(R.id.txtAlumnosE);
+        txtImpresion = findViewById(R.id.txtImpresionesE);
+        cboMes = findViewById(R.id.cboMesE);
 
         ArrayList<CustomItems> customItemsArrayList = new ArrayList<>();
 
@@ -70,11 +70,14 @@ public class Estadisticas extends AppCompatActivity implements AdapterView.OnIte
 
         cmdLimpiar.setOnClickListener(v -> {
             txtHora.setText("");
-            txtProfesor.setText("");
+            txtAlmumno.setText("");
             txtImpresion.setText("");
         });
 
-        cmdBuscar.setOnClickListener(v -> obtenerDatos("https://enp2saladecomputo.000webhostapp.com/Alumnos/Estadisticas.php?fechaYHora="+mes));
+        cmdBuscar.setOnClickListener(v -> {
+            obtenerDatos("https://enp2saladecomputo.000webhostapp.com/Alumnos/Estadistica.php?fechaYHora=" + mes);
+            Toast.makeText(getApplicationContext(), mes+"", Toast.LENGTH_SHORT).show();
+        });
     }
 
     public void obtenerDatos(String URL) {
@@ -84,6 +87,7 @@ public class Estadisticas extends AppCompatActivity implements AdapterView.OnIte
             fecha = new String[response.length()];
             impresiones = new int[response.length()];
             hora = new String[response.length()];
+            Toast.makeText(getApplicationContext(), response.length()+"", Toast.LENGTH_SHORT).show();
             for (int i = 0; i < response.length(); i++) {
                 try {
                     jsonObject = response.getJSONObject(i);
@@ -103,12 +107,12 @@ public class Estadisticas extends AppCompatActivity implements AdapterView.OnIte
             if(hora[0] != null){
                 txtImpresion.setText(impresionesMensuales+"");
                 txtHora.setText(dato+":00 hrs");
-                txtProfesor.setText(fecha.length+"");
+                txtAlmumno.setText(fecha.length+"");
             }
         }, error -> {
             Toast.makeText(getApplicationContext(), "No se encontraron datos del mes", Toast.LENGTH_SHORT).show();
             txtImpresion.setText("");
-            txtProfesor.setText("");
+            txtAlmumno.setText("");
             txtHora.setText("");
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -119,7 +123,6 @@ public class Estadisticas extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
         mes = mesecito[position];
-        Toast.makeText(getApplicationContext(), mes+"", Toast.LENGTH_SHORT).show();
     }
 
     @Override

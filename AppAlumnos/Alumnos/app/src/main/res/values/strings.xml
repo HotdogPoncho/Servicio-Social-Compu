@@ -11,4 +11,21 @@
     <string name="apellidos">Apellidos</string>
     <string name="nombre">Nombre</string>
     <string name="limpiar">Limpiar</string>
+    <string name="seleccionar">Seleccione una opción</string>
+    <string name="modificarDatos">Modificar Datos</string>
+    <string name="estadisticas">Estadisticas</string>
+    <string name="control_de_uso">Control de Uso</string>
+    <string name="alumnos_registrados">Alumnos Registrados</string>
+    <string name="buscar">Buscar</string>
+    <string name="modificar">Modificar</string>
+    <string name="impresiones">Impresiones</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="observaciones">Observaciones</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="regresar">Regresar</string>
+    <string name="mes">Mes</string>
+    <string name="cero">0</string>
+    <string name="horaDemandada">Hora más demandada en el mes</string>
+    <string name="impresionesMensuales">Impresiones totales mensuales</string>
+    <string name="alumnos_registrados_en_el_mes">Alumnos registrados en el mes</string>
 </resources>

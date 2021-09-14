@@ -106,15 +106,14 @@ public class BuscarProfesor extends AppCompatActivity {
     }
 
     public void modificar(View view){
+        Intent modificarDatos;
         if(control){
-            Intent modificarDatos = new Intent(BuscarProfesor.this, ModificarDatos.class);
-            modificarDatos.putExtra("fechaYHora", fecha);
-            startActivity(modificarDatos);
+            modificarDatos = new Intent(BuscarProfesor.this, ModificarDatos.class);
         }else{
-            Intent modificarDatos = new Intent(BuscarProfesor.this, ModificarDatosProfesores.class);
-            modificarDatos.putExtra("fechaYHora", fecha);
-            startActivity(modificarDatos);
+            modificarDatos = new Intent(BuscarProfesor.this, ModificarDatosProfesores.class);
         }
+        modificarDatos.putExtra("fechaYHora", fecha);
+        startActivity(modificarDatos);
     }
 
     public void buscar(View view) {
@@ -149,6 +148,7 @@ public class BuscarProfesor extends AppCompatActivity {
 
         CustomAdapterListView customAdapter = new CustomAdapterListView(this, nombres, datos, items);
         lstVisitas.setAdapter(customAdapter);
+
 
     }
 

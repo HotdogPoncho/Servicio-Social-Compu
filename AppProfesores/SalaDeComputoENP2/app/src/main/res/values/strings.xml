@@ -14,7 +14,7 @@
     <string name="estadisticas">Estadisticas</string>
     <string name="mes">Mes</string>
     <string name="profesoresRegistrados">Profesores registrados en el mes</string>
-    <string name="horaDemandada">Hora más solicitada</string>
+    <string name="horaDemandada">Hora más solicitada en el mes</string>
     <string name="impresionesMensuales">Impresiones totales mensuales</string>
     <string name="limpiar">Limpiar</string>
     <string name="cero">0</string>

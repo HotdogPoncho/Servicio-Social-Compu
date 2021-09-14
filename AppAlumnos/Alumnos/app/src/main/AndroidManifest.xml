@@ -13,6 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
+            android:name=".ModificarDatosUso"
+            android:exported="true" />
+        <activity
+            android:name=".ModificarDatosAlumno"
+            android:exported="true" />
+        <activity
+            android:name=".BuscarAlumnos"
+            android:exported="true" />
+        <activity
+            android:name=".Estadisticas"
+            android:exported="true" />
+        <activity
+            android:name=".InterfazAdministrador"
+            android:exported="true" />
+        <activity
             android:name=".RegistroExitoso"
             android:exported="true" />
         <activity

@@ -47,7 +47,7 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/cmdSalir"
+                android:id="@+id/cmdRegresar"
                 android:layout_width="271dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="10dp"

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gris"
+    tools:context=".RegistroAlumnos">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="157dp"
+                    android:layout_height="88dp"
+                    android:layout_marginStart="126dp"
+                    android:layout_marginTop="44dp"
+                    android:layout_marginEnd="126dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/appform" />
+
+                <EditText
+                    android:id="@+id/txtNumCuentaM"
+                    android:layout_width="270dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="100dp"
+                    android:background="@drawable/custom_input"
+                    android:drawableStart="@drawable/custom_input_badge"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:hint="@string/numero_de_cuenta"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+                <EditText
+                    android:id="@+id/txtApellidosM"
+                    android:layout_width="270dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="100dp"
+                    android:background="@drawable/custom_input"
+                    android:drawableStart="@drawable/custom_input_person"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:hint="@string/apellidos"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtNumCuentaM" />
+
+                <EditText
+                    android:id="@+id/txtNombreM"
+                    android:layout_width="270dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="100dp"
+                    android:background="@drawable/custom_input"
+                    android:drawableStart="@drawable/custom_input_person"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:hint="@string/nombre"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtApellidosM" />
+
+                <Spinner
+                    android:id="@+id/cboGradoM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="240dp"
+                    android:layout_marginTop="36dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtNombreM"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <Spinner
+                    android:id="@+id/cboGrupoM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginTop="36dp"
+                    app:layout_constraintStart_toEndOf="@+id/cboGradoM"
+                    app:layout_constraintTop_toBottomOf="@+id/txtNombreM"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <Button
+                    android:id="@+id/cmdActualizarDatos"
+                    android:layout_width="219dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="95dp"
+                    android:layout_marginTop="56dp"
+                    android:layout_marginEnd="95dp"
+                    android:background="@drawable/button_rounded"
+                    android:text="@string/registrarse"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cboGrupoM" />
+
+                <Button
+                    android:id="@+id/cmdRegresar"
+                    android:layout_width="219dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="95dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="95dp"
+                    android:background="@drawable/button_rounded_border"
+                    android:text="@string/limpiar"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cmdActualizarDatos" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,5 @@
 package com.example.alumnos;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,9 +12,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -26,13 +27,12 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegistroAlumnos extends AppCompatActivity {
+public class ModificarDatosAlumno extends AppCompatActivity {
 
     EditText txtNumeroDeCuenta, txtApellidos, txtNombre;
-
-    Spinner cboGrado, cboGrupo;
-
+    Spinner  cboGrupo, cboGrado;
     Button cmdRegistrarse, cmdLimpiar;
+    String busqueda = "";
 
     String[] grado = {"Cuarto", "Quinto", "Sexto"};
 
@@ -42,28 +42,29 @@ public class RegistroAlumnos extends AppCompatActivity {
 
     int[] sexto = {601,602,603,604,605,606,607,608,609,610,611,612,614,615,617,618,619,620,621,651,652,653,654,655,656,657,658,659,660,661,662,663,664};
 
-    String grupoSeleccionado, gradito;
+    String grupito, grupoSeleccionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro_alumnos);
-
+        setContentView(R.layout.activity_modificar_datos_alumno);
         inicializar();
-
     }
 
-    public void inicializar(){
+    private void inicializar() {
 
         txtNumeroDeCuenta = findViewById(R.id.txtNumCuentaM);
         txtApellidos = findViewById(R.id.txtApellidosM);
         txtNombre = findViewById(R.id.txtNombreM);
-
+        cboGrado = findViewById(R.id.cboGradoM);
+        cboGrupo = findViewById(R.id.cboGrupoM);
         cmdRegistrarse = findViewById(R.id.cmdActualizarDatos);
         cmdLimpiar = findViewById(R.id.cmdRegresar);
 
-        cboGrado = findViewById(R.id.cboGradoM);
-        cboGrupo = findViewById(R.id.cboGrupoM);
+
+        busqueda = getIntent().getStringExtra("busqueda");
+
+        buscarDatos();
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner_item, grado);
         cboGrado.setAdapter(arrayAdapter);
@@ -71,7 +72,6 @@ public class RegistroAlumnos extends AppCompatActivity {
         cboGrado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                gradito = grado[position];
                 switch (position){
                     case 0:
                         grupos(cuarto);
@@ -91,30 +91,66 @@ public class RegistroAlumnos extends AppCompatActivity {
             }
         });
 
-        cmdRegistrarse.setOnClickListener(v -> {
-            if(txtNumeroDeCuenta.getText().toString().equals("")){
-                Toast.makeText(getApplicationContext(), "Ingresa tu numero de cuenta", Toast.LENGTH_SHORT).show();
-                txtNumeroDeCuenta.requestFocus();
-            }else if(txtApellidos.getText().toString().equals("")){
-                Toast.makeText(getApplicationContext(), "Ingresa tus apellidos", Toast.LENGTH_SHORT).show();
-                txtApellidos.requestFocus();
-            }else if(txtNombre.getText().toString().equals("")){
-                Toast.makeText(getApplicationContext(), "Ingresa tu nombre", Toast.LENGTH_SHORT).show();
-                txtNombre.requestFocus();
-            }else {
-                duplicados();
-                intent();
+        cmdLimpiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), BuscarAlumnos.class);
+                startActivity(intent);
             }
         });
 
-        cmdLimpiar.setOnClickListener(v -> {
-            txtNumeroDeCuenta.setText("");
-            txtApellidos.setText("");
-            txtNombre.setText("");
-            txtNumeroDeCuenta.requestFocus();
+        cmdRegistrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actualizarDatos("https://enp2saladecomputo.000webhostapp.com/Alumnos/ActualizarDatosAlumnos.php?numeroDeCuenta=" + txtNumeroDeCuenta.getText().toString());
+            }
         });
 
 
+    }
+
+    public void actualizarDatos(String URL){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), "Actualización exitosa.", Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> parametros = new HashMap<>();
+                parametros.put("apellidos", txtApellidos.getText().toString().toUpperCase());
+                parametros.put("nombre", txtNombre.getText().toString().toUpperCase());
+                parametros.put("grupo", grupoSeleccionado.toUpperCase());
+                return parametros;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    public void buscarDatos(){
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest("https://enp2saladecomputo.000webhostapp.com/Alumnos/BuscarAlumnoRegistro.php?numeroDeCuenta=" + busqueda, response -> {
+            JSONObject jsonObject;
+            for(int i = 0; i < response.length(); i++){
+                try{
+                    jsonObject = response.getJSONObject(i);
+                    txtNumeroDeCuenta.setText(jsonObject.getString("numeroDeCuenta"));
+                    txtApellidos.setText(jsonObject.getString("apellidos"));
+                    txtNombre.setText(jsonObject.getString("nombre"));
+                    grupito = jsonObject.getString("grupo");
+                }catch(JSONException e){
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 
     public void grupos(int[] grupo){
@@ -138,43 +174,6 @@ public class RegistroAlumnos extends AppCompatActivity {
 
             }
         });
-    }
-
-    public void registrarAlumno(){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://enp2saladecomputo.000webhostapp.com/Alumnos/RegistrarAlumno.php", response -> Toast.makeText(getApplicationContext(), "Registro Exitoso, Intente Iniciando Sesión", Toast.LENGTH_SHORT).show(), error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show()){
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String,String> parametros = new HashMap<>();
-                parametros.put("numeroDeCuenta", txtNumeroDeCuenta.getText().toString());
-                parametros.put("apellidos", txtApellidos.getText().toString().toUpperCase());
-                parametros.put("nombre", txtNombre.getText().toString().toUpperCase());
-                parametros.put("grupo", grupoSeleccionado);
-                return parametros;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-
-    public void duplicados(){
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest("https://enp2saladecomputo.000webhostapp.com/Alumnos/DuplicadoAlumnos.php?numeroDeCuenta=" + txtNumeroDeCuenta.getText().toString(), response -> {
-            JSONObject jsonObject;
-            for (int i = 0; i < response.length(); i++) {
-                try {
-                    jsonObject = response.getJSONObject(i);
-                    Toast.makeText(getApplicationContext(), "Hola " + jsonObject.getString("nombre") + " intenta iniciando sesión con tu numero de cuenta", Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        }, error -> registrarAlumno());
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
-    }
-
-    public void intent(){
-        Intent intent = new Intent(RegistroAlumnos.this, MainActivity.class);
-        startActivity(intent);
     }
 
 }

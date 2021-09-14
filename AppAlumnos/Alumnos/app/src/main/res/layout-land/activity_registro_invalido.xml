@@ -55,12 +55,12 @@
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toTopOf="@+id/cmdSalir"
+                app:layout_constraintBottom_toTopOf="@+id/cmdRegresar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/cmdSalir"
+                android:id="@+id/cmdRegresar"
                 android:layout_width="271dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="230dp"

@@ -12,8 +12,15 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -126,7 +133,7 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
         }else if(txtNombre.length() == 0){
             Toast.makeText(this, "Ingresa tu nombre", Toast.LENGTH_SHORT).show();
         }else{
-            ejecutarServicio();
+            duplicado();
             Intent Inicio = new Intent(this, MainActivity.class);
             startActivity(Inicio);
         }
@@ -139,7 +146,7 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
     }
 
 
-    private void ejecutarServicio(){
+    public void ejecutarServicio(){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://enp2saladecomputo.000webhostapp.com/Profesores/registrarProfesor.php", response -> Toast.makeText(getApplicationContext(), "Registro exitoso, intente iniciando sesión", Toast.LENGTH_SHORT).show(), error -> {
 
         }){
@@ -156,6 +163,22 @@ public class Registro extends AppCompatActivity implements AdapterView.OnItemSel
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    public void duplicado(){
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest("https://enp2saladecomputo.000webhostapp.com/Profesores/DuplicadoProfesor.php?numeroDeTrabajador=" + txtNumTrab.getText().toString(), response -> {
+            JSONObject jsonObject;
+            for(int i = 0; i < response.length(); i++){
+                try{
+                    jsonObject = response.getJSONObject(i);
+                    Toast.makeText(getApplicationContext(), "Hola " + jsonObject.getString("nombre") + " " + jsonObject.getString("apellidos") + " intenta iniciando sesión con tu número de trabajador", Toast.LENGTH_SHORT).show();
+                }catch (JSONException e){
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, error -> ejecutarServicio());
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 
 

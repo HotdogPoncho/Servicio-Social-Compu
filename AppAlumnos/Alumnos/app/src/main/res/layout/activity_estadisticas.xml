@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="-65dp"
-        tools:layout_editor_absoluteY="-4dp">
+        tools:layout_editor_absoluteY="-4dp"
+        tools:ignore="MissingConstraints">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,14 +29,14 @@
                 android:text="@string/mes"
                 android:textColor="@color/white"
                 android:textSize="24sp"
-                app:layout_constraintEnd_toStartOf="@+id/cboMes"
+                app:layout_constraintEnd_toStartOf="@+id/cboMesE"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
-                android:id="@+id/cboMes"
-                android:layout_width="wrap_content"
+                android:id="@+id/cboMesE"
+                android:layout_width="200dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="77dp"
@@ -46,21 +47,22 @@
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <TextView
-                android:id="@+id/lblProfesores"
+                android:id="@+id/lblAlumnos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="29dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="30dp"
-                android:text="@string/profesoresRegistrados"
+                android:text="@string/alumnos_registrados_en_el_mes"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lblMes" />
 
             <EditText
-                android:id="@+id/txtProfesores"
+                android:id="@+id/txtAlumnosE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="29dp"
@@ -74,8 +76,9 @@
                 android:textColorHint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblProfesores"
-                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+                app:layout_constraintTop_toBottomOf="@+id/lblAlumnos"
+                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck"
+                android:autofillHints="no" />
 
             <TextView
                 android:id="@+id/lblHora"
@@ -88,12 +91,12 @@
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.018"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtProfesores" />
+                app:layout_constraintTop_toBottomOf="@+id/txtAlumnosE" />
 
             <EditText
-                android:id="@+id/txtHora"
+                android:id="@+id/txtHoraE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="29dp"
@@ -108,7 +111,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lblHora"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck"
+                android:autofillHints="no" />
 
             <TextView
                 android:id="@+id/lblImpresion"
@@ -122,11 +126,11 @@
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtHora" />
+                app:layout_constraintTop_toBottomOf="@+id/txtHoraE" />
 
 
             <EditText
-                android:id="@+id/txtImpresiones"
+                android:id="@+id/txtImpresionesE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="29dp"
@@ -141,10 +145,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lblImpresion"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck"
+                android:autofillHints="no" />
 
             <Button
-                android:id="@+id/cmdBuscar"
+                android:id="@+id/cmdBuscarE"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
@@ -153,11 +158,11 @@
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtImpresiones"
+                app:layout_constraintTop_toBottomOf="@+id/txtImpresionesE"
                 tools:ignore="TextContrastCheck" />
 
             <Button
-                android:id="@+id/cmdLimpiar"
+                android:id="@+id/cmdLimpiarE"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
@@ -166,7 +171,7 @@
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cmdBuscar" />
+                app:layout_constraintTop_toBottomOf="@+id/cmdBuscarE" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

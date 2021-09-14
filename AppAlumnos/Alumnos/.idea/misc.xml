@@ -8,16 +8,31 @@
         <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/custom_input.xml" value="0.2203125" />
         <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/custom_input_badge.xml" value="0.2203125" />
         <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/custom_input_person.xml" value="0.2203125" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/custom_list_selector.xml" value="0.2203125" />
         <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/custom_select_spinner.xml" value="0.2203125" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/ic_abril.xml" value="0.2203125" />
         <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout-land/activity_buscar_alumnos.xml" value="0.1728395061728395" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout-land/activity_interfaz_administrador.xml" value="0.1728395061728395" />
         <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout-land/activity_main.xml" value="0.1728395061728395" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout-land/activity_modificar_datos_alumno.xml" value="0.1728395061728395" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout-land/activity_registro_alumnos.xml" value="0.2" />
         <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout-land/activity_registro_exitoso.xml" value="0.1728395061728395" />
         <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout-land/activity_registro_invalido.xml" value="0.18" />
-        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout-v26/activity_buscar_alumnos.xml" value="0.1933876811594203" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_buscar_alumnos.xml" value="0.25" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_estadisticas.xml" value="0.1" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_interfaz_administrador.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_modificar_datos_alumno.xml" value="0.25" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_modificar_datos_uso.xml" value="0.22" />
         <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_registro_alumnos.xml" value="0.22" />
         <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_registro_exitoso.xml" value="0.19157608695652173" />
         <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/activity_registro_invalido.xml" value="0.19157608695652173" />
         <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/custom.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/custom_list_view.xml" value="0.20380434782608695" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/custom_listview_layout.xml" value="0.67" />
+        <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/custom_spinner.xml" value="0.17617753623188406" />
         <entry key="..\:/Users/Poncho Mondragon/Desktop/Cosas Servicio Social/Servicio-Social-Compu/AppAlumnos/Alumnos/app/src/main/res/layout/custom_spinner_item.xml" value="0.20416666666666666" />
       </map>
     </option>
